@@ -101,7 +101,7 @@
 <meta property="og:site_name" content="Rossroma&#39;s Blog">
 <meta property="og:description" content="在平时写代码时，经常会对两个值做是否相等的比较，这看上去是非常简单，不值一提的事情，但有一些小细节，一定要注意。 等于（宽松相等） == 相等操作符比较两个值是否相等，在比较前将两个被比较的值转换为相同类型。在转换后（等式的一边或两边都可能被转换），最终的比较方式等同于全等操作符 === 的比较方式。  转换规则如下：  如果其中一个操作数的类型为 Boolean ，那么，首先将它转换为数字类型，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-20T14:47:28.000Z">
+<meta property="og:updated_time" content="2017-12-20T14:53:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javascript基础知识篇一 —— 等于和全等">
 <meta name="twitter:description" content="在平时写代码时，经常会对两个值做是否相等的比较，这看上去是非常简单，不值一提的事情，但有一些小细节，一定要注意。 等于（宽松相等） == 相等操作符比较两个值是否相等，在比较前将两个被比较的值转换为相同类型。在转换后（等式的一边或两边都可能被转换），最终的比较方式等同于全等操作符 === 的比较方式。  转换规则如下：  如果其中一个操作数的类型为 Boolean ，那么，首先将它转换为数字类型，">
@@ -402,6 +402,10 @@
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// DEMO</span></span><br><span class="line"></span><br><span class="line"><span class="number">0</span> === <span class="string">"0"</span></span><br><span class="line">  =&gt; <span class="literal">false</span></span><br><span class="line"><span class="literal">false</span> === <span class="string">"false"</span></span><br><span class="line">  =&gt; <span class="literal">false</span></span><br><span class="line"><span class="literal">null</span> === <span class="literal">undefined</span></span><br><span class="line">  =&gt; <span class="literal">false</span></span><br><span class="line">+<span class="number">0</span> === <span class="number">-0</span></span><br><span class="line">  =&gt; <span class="literal">true</span></span><br><span class="line"><span class="number">1</span> === <span class="number">1.0</span></span><br><span class="line">  =&gt; <span class="literal">true</span></span><br></pre></td></tr></table></figure>
 <p>看完上面的介绍，是否对 “等于” 和 “全等” 有了更深入的理解呢？如果还是担心自己掌握的不够牢固，那建议你彻底抛弃“等于”，因为“全等”操作符的结果更容易预测，并且因为没有隐式转换，全等比较的操作会更快。</p>
+<h5 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h5><ul>
+<li><a href="https://www.cnblogs.com/haogj/archive/2010/04/24/1719522.html" target="_blank" rel="noopener">Javascript 中的相等与不等</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Equality_comparisons_and_sameness" target="_blank" rel="noopener">JavaScript 中的相等性判断</a></li>
+</ul>
 
       
     </div>
@@ -543,7 +547,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -600,7 +604,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#等于（宽松相等）"><span class="nav-number">1.</span> <span class="nav-text">等于（宽松相等） ==</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#全等（严格相等）"><span class="nav-number">2.</span> <span class="nav-text">全等（严格相等） ===</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#等于（宽松相等）"><span class="nav-number">1.</span> <span class="nav-text">等于（宽松相等） ==</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#全等（严格相等）"><span class="nav-number">2.</span> <span class="nav-text">全等（严格相等） ===</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#参考链接"><span class="nav-number">2.0.1.</span> <span class="nav-text">参考链接</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
