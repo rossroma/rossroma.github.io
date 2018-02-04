@@ -101,7 +101,7 @@
 <meta property="og:site_name" content="Rossroma&#39;s Blog">
 <meta property="og:description" content="写代码时，通常要耗费大量的时间去排查bug产生的原因，如何快速的定位bug，在很大程度上决定了你的开发效率。下面是我的一些经验分享。 提高编码质量在一个项目足够简单时，往往不会意识到编码规范和代码质量的重要性。当项目大到需要多人协作或是接收别人的代码时，你就会意识到，编码规范的统一、项目结构的设计、代码的易读性和规范的注释是多么重要。 提高编码质量不仅仅可以帮你快速的定位到bug，更能有效的减少b">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-04T05:12:11.000Z">
+<meta property="og:updated_time" content="2018-02-04T05:17:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端开发—如何快速定位错误">
 <meta name="twitter:description" content="写代码时，通常要耗费大量的时间去排查bug产生的原因，如何快速的定位bug，在很大程度上决定了你的开发效率。下面是我的一些经验分享。 提高编码质量在一个项目足够简单时，往往不会意识到编码规范和代码质量的重要性。当项目大到需要多人协作或是接收别人的代码时，你就会意识到，编码规范的统一、项目结构的设计、代码的易读性和规范的注释是多么重要。 提高编码质量不仅仅可以帮你快速的定位到bug，更能有效的减少b">
@@ -379,26 +379,26 @@
 <h5 id="提高编码质量不仅仅可以帮你快速的定位到bug，更能有效的减少bug数量。糟糕的代码就像堆在一起的杂物，而高质量的代码就像是分门别类的收纳箱，在找东西时-，哪个效率更高是显而易见的。"><a href="#提高编码质量不仅仅可以帮你快速的定位到bug，更能有效的减少bug数量。糟糕的代码就像堆在一起的杂物，而高质量的代码就像是分门别类的收纳箱，在找东西时-，哪个效率更高是显而易见的。" class="headerlink" title="提高编码质量不仅仅可以帮你快速的定位到bug，更能有效的减少bug数量。糟糕的代码就像堆在一起的杂物，而高质量的代码就像是分门别类的收纳箱，在找东西时 ，哪个效率更高是显而易见的。"></a>提高编码质量不仅仅可以帮你快速的定位到bug，更能有效的减少bug数量。糟糕的代码就像堆在一起的杂物，而高质量的代码就像是分门别类的收纳箱，在找东西时 ，哪个效率更高是显而易见的。</h5><p>当然，提高编码质量不是一蹴而就的，需要有扎实的基础知识，良好的编码规范，以及日积月累的犯错经验。之后可以专门写一篇文章，来介绍如何编写高质量的代码。</p>
 <h3 id="阅读报错信息"><a href="#阅读报错信息" class="headerlink" title="阅读报错信息"></a>阅读报错信息</h3><p>如果浏览器有输出错误信息，那么根据错误信息，我们就能大致判断出错误类型以及可能出错的原因。</p>
 <p>比如:</p>
-<ol>
+<ul>
 <li>根据如下报错信息，我们看到，代码在运行时，试图去访问某一对象的<code>attr</code>属性，而该对象并没有被定义。这时候，我们只要在出错的页面去检索关键词<code>attr</code>，输出<code>attr</code>所依赖的对象，就知道错误出在哪儿了</li>
-</ol>
+</ul>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Uncaught TypeError: Cannot read property 'attr' of undefined</span><br></pre></td></tr></table></figure>
-<ol>
+<ul>
 <li>map是数组才有的方法，这里可以预见的是，a并不是一个数组，结果就是 a 没有达到我们预期的格式</li>
-</ol>
+</ul>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Uncaught TypeError: a.map is not a function</span><br></pre></td></tr></table></figure>
-<ol>
+<ul>
 <li>js代码格式错误，通常ESLint会输出报错，检查一下引号、逗号、小括号、大括号是否写完整</li>
-</ol>
+</ul>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Uncaught SyntaxError: Invalid or unexpected token</span><br></pre></td></tr></table></figure>
-<ol>
+<ul>
 <li><p>有时候，即便是看懂了报错信息，也不清楚自己的代码到底出了什么问题。你可以把报错信息复制下来，去stackoverflow，segmentfault等专业问答网站去检索一下，如果找到不到合理的答案，还可以去google或百度去搜。要相信，总有人会和你遇到过类似的问题。</p>
 <p>​</p>
 </li>
-</ol>
+</ul>
 <h3 id="善用console"><a href="#善用console" class="headerlink" title="善用console"></a>善用console</h3><p>有时候，代码不能以期望的方式运行，但又没有输出任何有效的错误信息，我们可以使用console方法，将必要的信息打印出来。</p>
-<h4 id="如何使用？"><a href="#如何使用？" class="headerlink" title="如何使用？"></a>如何使用？</h4><p>比如，但我们点击提交按钮时，并没有发起提交请求。这时，我们要查看源码，找出从点击提交按钮一直到发起请求中间，都执行了哪些步骤。并将关键步骤处的关键信息输出，比如if else的判断条件、被遍历的数组和对象，以及可能中断执行的return语句。</p>
-<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><p>在使用console输出时，建议带上关键词，且不建议使用无意义的数字、字母等：</p>
+<h5 id="如何使用？"><a href="#如何使用？" class="headerlink" title="如何使用？"></a>如何使用？</h5><p>比如，但我们点击提交按钮时，并没有发起提交请求。这时，我们要查看源码，找出从点击提交按钮一直到发起请求中间，都执行了哪些步骤。并将关键步骤处的关键信息输出，比如if else的判断条件、被遍历的数组和对象，以及可能中断执行的return语句。</p>
+<h5 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h5><p>在使用console输出时，建议带上关键词，且不建议使用无意义的数字、字母等：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// good</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'attrValue'</span>, <span class="keyword">this</span>.attrValue)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'getModule方法的判断条件'</span>, isShow)</span><br><span class="line"></span><br><span class="line"><span class="comment">// bad</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">666</span>, <span class="keyword">this</span>.attrValue)</span><br><span class="line"><span class="built_in">console</span>.log(isShow)</span><br></pre></td></tr></table></figure>
 <p>另外，在错误排除后，建议删除不再使用的console调试代码，避免在查找其他错误时，造成不必要的干扰。</p>
 <h3 id="排除法"><a href="#排除法" class="headerlink" title="排除法"></a>排除法</h3><p>这个方法之前明明是正常的，我并没有改动它，只是在其他地方加了一些代码，它就不正常了。</p>
@@ -608,7 +608,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#提高编码质量"><span class="nav-number">1.</span> <span class="nav-text">提高编码质量</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#提高编码质量不仅仅可以帮你快速的定位到bug，更能有效的减少bug数量。糟糕的代码就像堆在一起的杂物，而高质量的代码就像是分门别类的收纳箱，在找东西时-，哪个效率更高是显而易见的。"><span class="nav-number">1.0.1.</span> <span class="nav-text">提高编码质量不仅仅可以帮你快速的定位到bug，更能有效的减少bug数量。糟糕的代码就像堆在一起的杂物，而高质量的代码就像是分门别类的收纳箱，在找东西时 ，哪个效率更高是显而易见的。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#阅读报错信息"><span class="nav-number">2.</span> <span class="nav-text">阅读报错信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#善用console"><span class="nav-number">3.</span> <span class="nav-text">善用console</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#如何使用？"><span class="nav-number">3.1.</span> <span class="nav-text">如何使用？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注意事项"><span class="nav-number">3.2.</span> <span class="nav-text">注意事项</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#排除法"><span class="nav-number">4.</span> <span class="nav-text">排除法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#剥离法"><span class="nav-number">5.</span> <span class="nav-text">剥离法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线上故障排除"><span class="nav-number">6.</span> <span class="nav-text">线上故障排除</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#关于sourceMap的更多介绍可以移步以下几个链接："><span class="nav-number">6.0.0.1.</span> <span class="nav-text">关于sourceMap的更多介绍可以移步以下几个链接：</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#提高编码质量"><span class="nav-number">1.</span> <span class="nav-text">提高编码质量</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#提高编码质量不仅仅可以帮你快速的定位到bug，更能有效的减少bug数量。糟糕的代码就像堆在一起的杂物，而高质量的代码就像是分门别类的收纳箱，在找东西时-，哪个效率更高是显而易见的。"><span class="nav-number">1.0.1.</span> <span class="nav-text">提高编码质量不仅仅可以帮你快速的定位到bug，更能有效的减少bug数量。糟糕的代码就像堆在一起的杂物，而高质量的代码就像是分门别类的收纳箱，在找东西时 ，哪个效率更高是显而易见的。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#阅读报错信息"><span class="nav-number">2.</span> <span class="nav-text">阅读报错信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#善用console"><span class="nav-number">3.</span> <span class="nav-text">善用console</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#如何使用？"><span class="nav-number">3.0.1.</span> <span class="nav-text">如何使用？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#注意事项"><span class="nav-number">3.0.2.</span> <span class="nav-text">注意事项</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#排除法"><span class="nav-number">4.</span> <span class="nav-text">排除法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#剥离法"><span class="nav-number">5.</span> <span class="nav-text">剥离法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线上故障排除"><span class="nav-number">6.</span> <span class="nav-text">线上故障排除</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#关于sourceMap的更多介绍可以移步以下几个链接："><span class="nav-number">6.0.0.1.</span> <span class="nav-text">关于sourceMap的更多介绍可以移步以下几个链接：</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
