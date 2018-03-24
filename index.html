@@ -274,7 +274,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://blog.rossroma.com/2018/03/24/prototype/">
+    <link itemprop="mainEntityOfPage" href="http://blog.rossroma.com/2018/03/24/javascript-object/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ross roma">
@@ -293,7 +293,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/24/prototype/" itemprop="url">谈谈JavaScript中的对象</a></h1>
+                <a class="post-title-link" href="/2018/03/24/javascript-object/" itemprop="url">谈谈JavaScript中的对象</a></h1>
         
 
         <div class="post-meta">
@@ -316,6 +316,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -324,9 +346,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/03/24/prototype/#comments" itemprop="discussionUrl">
+                <a href="/2018/03/24/javascript-object/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/03/24/prototype/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/03/24/javascript-object/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -356,11 +378,17 @@
             <p>JavaScript中有很多让人迷惑的地方，比如有人说JavaScript中一切皆对象，但又有一个Object类型，还有下面的代码：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="literal">null</span>.prototype</span><br><span class="line">&lt; <span class="built_in">TypeError</span>: <span class="literal">null</span> is not an object (evaluating <span class="string">'null.prototype'</span>)</span><br><span class="line">&gt; <span class="keyword">typeof</span> <span class="literal">null</span></span><br><span class="line">&lt; <span class="string">"object"</span></span><br></pre></td></tr></table></figure>
 <p>当我们试图去访问null的原型时，被提示null不是一个对象，但我们使用typeof判断其类型时，得到的却是object。</p>
-<p>我觉得可以将JavaScript中的所有类型区分为广义上的object和狭义上的Object类型，只有引用类型才是Object类型，即原型为Object，可以用instanceof来测试一下，如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="literal">null</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span></span><br><span class="line">&lt; <span class="literal">false</span></span><br><span class="line">&gt; <span class="literal">undefined</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span></span><br><span class="line">&lt; <span class="literal">false</span></span><br><span class="line">&gt; <span class="number">124</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span></span><br><span class="line">&lt; <span class="literal">false</span></span><br><span class="line">&gt; <span class="string">'str'</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span></span><br><span class="line">&lt; <span class="literal">false</span></span><br><span class="line">&gt; <span class="literal">true</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span></span><br><span class="line">&lt; <span class="literal">false</span></span><br><span class="line">&gt; <span class="built_in">Array</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span></span><br><span class="line">&lt; <span class="literal">true</span></span><br><span class="line">&gt; <span class="built_in">Function</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span></span><br><span class="line">&lt; <span class="literal">true</span></span><br><span class="line">&gt; <span class="built_in">Object</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span></span><br><span class="line">&lt; <span class="literal">true</span></span><br><span class="line">&gt; <span class="built_in">Date</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span></span><br><span class="line">&lt; <span class="literal">true</span></span><br><span class="line">&gt; <span class="built_in">Number</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span></span><br><span class="line">&lt; <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-<p>由上可以看出，null, undefined, string, boolean, number都不是引用类型，因此它们都不是狭义上的Object类型。</p>
+<blockquote>
+<p>我觉得可以将JavaScript中的所有类型划分为3类：</p>
+<ul>
+<li>第一类是null和undefined，这是两个比较特殊的类型，这里不做展开介绍；</li>
+<li>第二类是String、Number、Boolean和Symbol，它们可以通过对象的形式被创建，如<code>Boolean(true), Number(3), String(9)</code>等，这时它们为对象类型。但通常我们不会也不推荐这么做，我们会使用字面量的方式创建，如<code>let isShow = true; let num = 45</code>，这是它们属于基本类型，而非对象类型；</li>
+<li>第三类是我们通常所定义的Object类型，它们都是引用类型，原型都指向Object，有Object，Array，Function，Set，Map，RegExp，Date等。其中Object可以算作纯Object类型，根正苗红的那种，具体表现形式为一个大括号，里面包含了0或多个键值对，其他的可以算作是Object的子集。</li>
+</ul>
+</blockquote>
+<p>接下来我们主要讲讲通常所定义的Object类型，即第三类，先看下面代码：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">typeof</span> <span class="built_in">Object</span></span><br><span class="line">&lt; <span class="string">"function"</span></span><br><span class="line">&gt; <span class="keyword">typeof</span> <span class="built_in">Array</span></span><br><span class="line">&lt; <span class="string">"function"</span></span><br><span class="line">&gt; <span class="keyword">typeof</span> <span class="built_in">Date</span></span><br><span class="line">&lt; <span class="string">"function"</span></span><br></pre></td></tr></table></figure>
-<p>接下来，我们又惊奇的发现，这些根正苗红的Object，竟然是个function，那么它俩究竟是什么关系呢？其实，所有的引用类型都是通过构造函数来创建的，而构造函数的原型是Object。所以，如果你理解了下面的代码，你就能明白Object和Function的关系了：</p>
+<p>我们又惊奇的发现，这些所谓的Object，竟然是个function，那么它俩究竟是什么关系呢？其实，所有的引用类型都是通过构造函数来创建的，而构造函数的原型是Object。所以，如果你理解了下面的代码，你就能明白Object和Function的关系了：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">Object</span> <span class="keyword">instanceof</span> <span class="built_in">Function</span></span><br><span class="line">&lt; <span class="literal">true</span></span><br><span class="line">&gt; <span class="built_in">Function</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span></span><br><span class="line">&lt; <span class="literal">true</span></span><br><span class="line">&gt; <span class="built_in">Object</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span></span><br><span class="line">&lt; <span class="literal">true</span></span><br></pre></td></tr></table></figure>
 <p>什么？还是感觉很混乱吗？那就要了解一下prototype了，请看下篇。</p>
 
@@ -869,7 +897,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="http://ofnd4wjbn.bkt.clouddn.com/gm-1478691626766.jpg-large" rel="gallery_cjf53v6pe0009lr41m1walirb"
+                 href="http://ofnd4wjbn.bkt.clouddn.com/gm-1478691626766.jpg-large" rel="gallery_cjf55lkeo000axb411becbpbw"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="http://ofnd4wjbn.bkt.clouddn.com/gm-1478691626766.jpg-large" itemprop="contentUrl"/>
               </a>
@@ -1039,7 +1067,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="http://ofnd4wjbn.bkt.clouddn.com/gm-1478682015538.jpg-large" rel="gallery_cjf53v6p60002lr415qd1zwrm"
+                 href="http://ofnd4wjbn.bkt.clouddn.com/gm-1478682015538.jpg-large" rel="gallery_cjf55lkeh0002xb41djzx5ba4"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="http://ofnd4wjbn.bkt.clouddn.com/gm-1478682015538.jpg-large" itemprop="contentUrl"/>
               </a>
@@ -1207,7 +1235,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="http://ofnd4wjbn.bkt.clouddn.com/gm-1478691600730.jpg" rel="gallery_cjf53v6pc0008lr41gpui21hq"
+                 href="http://ofnd4wjbn.bkt.clouddn.com/gm-1478691600730.jpg" rel="gallery_cjf55lkek0005xb410kruq38s"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="http://ofnd4wjbn.bkt.clouddn.com/gm-1478691600730.jpg" itemprop="contentUrl"/>
               </a>
