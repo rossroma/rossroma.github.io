@@ -274,6 +274,138 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://blog.rossroma.com/2018/03/24/prototype/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ross roma">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/6183683?v=3&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Rossroma's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/24/prototype/" itemprop="url">谈谈JavaScript中的对象</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-24T15:26:56+08:00">
+                2018-03-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/24/prototype/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/03/24/prototype/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>JavaScript中有很多让人迷惑的地方，比如有人说JavaScript中一切皆对象，但又有一个Object类型，还有下面的代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="literal">null</span>.prototype</span><br><span class="line">&lt; <span class="built_in">TypeError</span>: <span class="literal">null</span> is not an object (evaluating <span class="string">'null.prototype'</span>)</span><br><span class="line">&gt; <span class="keyword">typeof</span> <span class="literal">null</span></span><br><span class="line">&lt; <span class="string">"object"</span></span><br></pre></td></tr></table></figure>
+<p>当我们试图去访问null的原型时，被提示null不是一个对象，但我们使用typeof判断其类型时，得到的却是object。</p>
+<p>我觉得可以将JavaScript中的所有类型区分为广义上的object和狭义上的Object类型，只有引用类型才是Object类型，即原型为Object，可以用instanceof来测试一下，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="literal">null</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span></span><br><span class="line">&lt; <span class="literal">false</span></span><br><span class="line">&gt; <span class="literal">undefined</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span></span><br><span class="line">&lt; <span class="literal">false</span></span><br><span class="line">&gt; <span class="number">124</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span></span><br><span class="line">&lt; <span class="literal">false</span></span><br><span class="line">&gt; <span class="string">'str'</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span></span><br><span class="line">&lt; <span class="literal">false</span></span><br><span class="line">&gt; <span class="literal">true</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span></span><br><span class="line">&lt; <span class="literal">false</span></span><br><span class="line">&gt; <span class="built_in">Array</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span></span><br><span class="line">&lt; <span class="literal">true</span></span><br><span class="line">&gt; <span class="built_in">Function</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span></span><br><span class="line">&lt; <span class="literal">true</span></span><br><span class="line">&gt; <span class="built_in">Object</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span></span><br><span class="line">&lt; <span class="literal">true</span></span><br><span class="line">&gt; <span class="built_in">Date</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span></span><br><span class="line">&lt; <span class="literal">true</span></span><br><span class="line">&gt; <span class="built_in">Number</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span></span><br><span class="line">&lt; <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>由上可以看出，null, undefined, string, boolean, number都不是引用类型，因此它们都不是狭义上的Object类型。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">typeof</span> <span class="built_in">Object</span></span><br><span class="line">&lt; <span class="string">"function"</span></span><br><span class="line">&gt; <span class="keyword">typeof</span> <span class="built_in">Array</span></span><br><span class="line">&lt; <span class="string">"function"</span></span><br><span class="line">&gt; <span class="keyword">typeof</span> <span class="built_in">Date</span></span><br><span class="line">&lt; <span class="string">"function"</span></span><br></pre></td></tr></table></figure>
+<p>接下来，我们又惊奇的发现，这些根正苗红的Object，竟然是个function，那么它俩究竟是什么关系呢？其实，所有的引用类型都是通过构造函数来创建的，而构造函数的原型是Object。所以，如果你理解了下面的代码，你就能明白Object和Function的关系了：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">Object</span> <span class="keyword">instanceof</span> <span class="built_in">Function</span></span><br><span class="line">&lt; <span class="literal">true</span></span><br><span class="line">&gt; <span class="built_in">Function</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span></span><br><span class="line">&lt; <span class="literal">true</span></span><br><span class="line">&gt; <span class="built_in">Object</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span></span><br><span class="line">&lt; <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>什么？还是感觉很混乱吗？那就要了解一下prototype了，请看下篇。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://blog.rossroma.com/2018/02/04/how-to-location-bug/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -402,8 +534,13 @@
 <h5 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h5><p>在使用console输出时，建议带上关键词，且不建议使用无意义的数字、字母等：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// good</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'attrValue'</span>, <span class="keyword">this</span>.attrValue)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'getModule方法的判断条件'</span>, isShow)</span><br><span class="line"></span><br><span class="line"><span class="comment">// bad</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">666</span>, <span class="keyword">this</span>.attrValue)</span><br><span class="line"><span class="built_in">console</span>.log(isShow)</span><br></pre></td></tr></table></figure>
 <p>另外，在错误排除后，建议删除不再使用的console调试代码，避免在查找其他错误时，造成不必要的干扰。</p>
+<p>如果输出的是对象或数组，有可能得到不准确的结果</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">	key: <span class="number">1234</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(obj) <span class="comment">// &#123;key: 555&#125;</span></span><br><span class="line">obj.key = <span class="number">555</span></span><br></pre></td></tr></table></figure>
+<h3 id="打断点"><a href="#打断点" class="headerlink" title="打断点"></a>打断点</h3><p>Chrome的开发者工具有一个很好用的代码调试工具，就是Breakpoints（断点），与console不同的是，它会在断点处终止程序的执行，可以方便的看到代码在哪一步产生了问题。</p>
+<p>相比在代码里写debugger打断点的方式，Chrome的调试工具即便捷，又不产生副作用，所以不推荐在代码里写debugger的方式来调试。</p>
+<p>更多关于Chrome开发者工具的介绍与使用信息，可移步：<a href="http://blog.csdn.net/csdnligao/article/details/53925094" target="_blank" rel="noopener">chrome开发者工具的使用</a></p>
 <h3 id="排除法"><a href="#排除法" class="headerlink" title="排除法"></a>排除法</h3><p>这个方法之前明明是正常的，我并没有改动它，只是在其他地方加了一些代码，它就不正常了。</p>
-<p>怎么办？假使页面中一共有abcd五个方法，我们逐次注释掉a, b , c , d，每注释掉一个就运行一次代码，如果在注释掉d以后，代码运行正常了，那么问题就出在d身上。</p>
+<p>怎么办？假使页面中一共有abcd四个方法，我们逐次注释掉a, b , c , d，每注释掉一个就运行一次代码，如果在注释掉d以后，代码运行正常了，那么问题就出在d身上。</p>
 <h3 id="剥离法"><a href="#剥离法" class="headerlink" title="剥离法"></a>剥离法</h3><p>如果页面的代码量很大，用排除法效率可能会很低，这时候我们可以试试剥离法。</p>
 <p>同样一个方法（组件），在A页面运行没有问题，放到B页面就不行。这时候，可以建一个新的页面，里面只放这一个组件，然后运行，如果没有异常，首先可以排除，不是这个组件的问题。接下来，把B页面可能对该方法（组件）造成影响的条件，逐次添加进来，看看到底是哪个条件造成了异常。</p>
 <h3 id="线上故障排除"><a href="#线上故障排除" class="headerlink" title="线上故障排除"></a>线上故障排除</h3><p>有时候线上代码出了故障，而本地又无法重现，由于线上代码不能使用console，并且上线代码都经过了压缩混淆，导致很难调试。</p>
@@ -411,178 +548,6 @@
 <p>不过这样做也会有一些缺点，一是打包时间会变长，二是将原生代码暴露出去。所以，平时建议关闭sourceMap功能，只有在修复无法在本地重现的线上bug时再使用。而且，在修复完毕后，重新打一个没有sourceMap的包，上传到服务器，避免本地代码泄露。</p>
 <h6 id="关于sourceMap的更多介绍可以移步以下几个链接："><a href="#关于sourceMap的更多介绍可以移步以下几个链接：" class="headerlink" title="关于sourceMap的更多介绍可以移步以下几个链接："></a>关于sourceMap的更多介绍可以移步以下几个链接：</h6><p><a href="http://www.ruanyifeng.com/blog/2013/01/javascript_source_map.html" target="_blank" rel="noopener">JavaScript Source Map 详解</a></p>
 <p><a href="https://segmentfault.com/a/1190000008315937" target="_blank" rel="noopener">打破砂锅问到底：详解Webpack中的sourcemap</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://blog.rossroma.com/2017/12/30/vue-sku/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ross roma">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/6183683?v=3&s=400">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Rossroma's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/30/vue-sku/" itemprop="url">使用vuejs，展示产品sku信息</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-30T15:47:19+08:00">
-                2017-12-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/12/30/vue-sku/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/12/30/vue-sku/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>设计稿：</p>
-<p>数据格式：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> specification = [</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'颜色'</span>,</span><br><span class="line">    value: [ <span class="string">'黑色'</span>, <span class="string">'红色'</span> ]</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'尺码'</span>,</span><br><span class="line">    value: [ <span class="string">'S'</span>, <span class="string">'M'</span>, <span class="string">'L'</span> ]</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'款式'</span>,</span><br><span class="line">    value: [ <span class="string">'短款'</span>, <span class="string">'长款'</span> ]</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>如上数据格式，一共有三类规格，每一类规格下都有若干属性，我们最终要展示出三种规格属性的所有不重复搭配；</p>
-<p>假设现在我们只有“颜色”这一类规格，那么所有的属性搭配如下：</p>
-<blockquote>
-<ol>
-<li>黑色</li>
-<li>红色</li>
-</ol>
-</blockquote>
-<p>假设现在我们有”颜色“和”尺码“两类规格，那么所有的属性搭配如下：</p>
-<blockquote>
-<ol>
-<li>黑色 S</li>
-<li>黑色 M</li>
-<li>黑色 L</li>
-<li>红色 S</li>
-<li>红色 M</li>
-<li>红色 L</li>
-</ol>
-</blockquote>
-<p>以此类推，将不同规格下的属性数量相乘，就是所有不重复搭配属性的总数量。由此可得出，上面的数据格式中，一共会有<code>2*3*2=12</code> 中属性搭配。</p>
-<h3 id="实操"><a href="#实操" class="headerlink" title="实操"></a>实操</h3><h4 id="绘制表格框架"><a href="#绘制表格框架" class="headerlink" title="绘制表格框架"></a>绘制表格框架</h4><p>接下类，我们用html绘制一个表格框架，用来展示所有不重复的规格属性：</p>
-<h5 id="HTML部分"><a href="#HTML部分" class="headerlink" title="HTML部分"></a>HTML部分</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">class</span>=<span class="string">"stock-table"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">thead</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">th</span> <span class="attr">v-for</span>=<span class="string">"item in specification"</span>&gt;</span>&#123;&#123;item.name&#125;&#125;<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">thead</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">tbody</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span> <span class="attr">v-for</span>=<span class="string">"(attr, index) in countSum"</span> <span class="attr">:key</span>=<span class="string">"index"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">td</span></span></span><br><span class="line"><span class="tag">        <span class="attr">v-for</span>=<span class="string">"(item, specIndex) in specification"</span>&gt;</span></span><br><span class="line">        属性占位符</span><br><span class="line">      <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h5 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h5><ol>
-<li><p>首先，在thead部分遍历出所有的规格名称</p>
-</li>
-<li><p>然后，tbody中的tr需要遍历<code>2*3*2=12</code>次，这里我们写了一个方法，用来计算不同规格下所有属性的乘积</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">countSum () &#123;</span><br><span class="line">  <span class="keyword">let</span> num = <span class="number">1</span></span><br><span class="line">  <span class="keyword">this</span>.specification.forEach(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (item.value.length) &#123;</span><br><span class="line">      num *= item.value.length</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">return</span> num</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在tbody的每一行tr中，要显示与规格名称对应的所有属性。如何获取这些属性名，我们稍后再讲，这里先放入一些占位文字。</p>
-</li>
-</ol>
-<p>页面展示效果如下：</p>
-<h4 id="显示正确的属性名"><a href="#显示正确的属性名" class="headerlink" title="显示正确的属性名"></a>显示正确的属性名</h4><p>在实现最终的设计效果之前，我们可以先实现如下的展示效果：</p>
-<h5 id="寻找规律"><a href="#寻找规律" class="headerlink" title="寻找规律"></a>寻找规律</h5><ol>
-<li>”颜色“的展示规律为：<code>value[0]*6, value[1]*6</code></li>
-<li>”尺码“的展示规律为：<code>value[0]*2, value[1]*2, value[2]*2...</code></li>
-<li>”款式“的展示规律为：<code>value[0], value[1]...</code></li>
-</ol>
-<p>根据上面的规律，我们发现每一类规格属性的重复次数，为后面所有属性数量的乘积（最后一类除外），因此我们需要修改一下countSum方法，输入规格所在的位置，来获取后面所有属性的乘积</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">countSum (specIndex) &#123;</span><br><span class="line">  <span class="keyword">let</span> num = <span class="number">1</span></span><br><span class="line">  <span class="keyword">this</span>.specification.forEach(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (index &gt;= specIndex &amp;&amp; item.value.length) &#123;</span><br><span class="line">      num *= item.value.length</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">return</span> num</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>接下来，我们把属性占位符替换为一个方法，并传入规格序号和每一行tr的序号</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">tr</span> <span class="attr">v-for</span>=<span class="string">"(attr, index) in countSum"</span> <span class="attr">:key</span>=<span class="string">"index"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">td</span></span></span><br><span class="line"><span class="tag">    <span class="attr">v-for</span>=<span class="string">"(item, specIndex) in specification"</span>&gt;</span></span><br><span class="line">    &#123;&#123;getSpecAttr(specIndex, index)&#125;&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">getSpecAttr (specIndex, index) &#123;</span><br><span class="line">  <span class="comment">// 获取当前规格项目下的属性值</span></span><br><span class="line">  <span class="keyword">const</span> currentValues = <span class="keyword">this</span>.specification[specIndex].value</span><br><span class="line">  <span class="keyword">let</span> indexCopy</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 判断是否是最后一个规格项目</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">this</span>.specification[specIndex + <span class="number">1</span>] &amp;&amp; <span class="keyword">this</span>.specification[specIndex + <span class="number">1</span>].value.length) &#123;</span><br><span class="line">    indexCopy = index / <span class="keyword">this</span>.countSum(specIndex + <span class="number">1</span>)</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    indexCopy = index</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> i = <span class="built_in">Math</span>.floor(indexCopy % currentValues.length)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (i.toString() !== <span class="string">'NaN'</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> currentValues[i]</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">''</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="解释-1"><a href="#解释-1" class="headerlink" title="解释"></a>解释</h5><ol>
-<li><code>currentValues</code>为当前规格的所有属性数组，假如当前规格是”颜色“，那么<code>currentValues</code>就是<code>[ &#39;黑色&#39;, &#39;红色&#39; ]</code>，我们要做的就是先输出6遍<code>currentValues[0]</code>，再输出6遍<code>currentValues[1]</code>;</li>
-<li>当 <code>specIndex</code>为0时，getSpecAttr方法一共会被遍历12遍，index的值分别为0-11。已知</li>
-</ol>
 
           
         
@@ -904,7 +869,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="http://ofnd4wjbn.bkt.clouddn.com/gm-1478691626766.jpg-large" rel="gallery_cjd8c64r2000aha41xr2ptswx"
+                 href="http://ofnd4wjbn.bkt.clouddn.com/gm-1478691626766.jpg-large" rel="gallery_cjf53v6pe0009lr41m1walirb"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="http://ofnd4wjbn.bkt.clouddn.com/gm-1478691626766.jpg-large" itemprop="contentUrl"/>
               </a>
@@ -1074,7 +1039,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="http://ofnd4wjbn.bkt.clouddn.com/gm-1478682015538.jpg-large" rel="gallery_cjd8c64qp0000ha41m4wf7mu1"
+                 href="http://ofnd4wjbn.bkt.clouddn.com/gm-1478682015538.jpg-large" rel="gallery_cjf53v6p60002lr415qd1zwrm"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="http://ofnd4wjbn.bkt.clouddn.com/gm-1478682015538.jpg-large" itemprop="contentUrl"/>
               </a>
@@ -1242,7 +1207,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="http://ofnd4wjbn.bkt.clouddn.com/gm-1478691600730.jpg" rel="gallery_cjd8c64qy0005ha41sxwiw49o"
+                 href="http://ofnd4wjbn.bkt.clouddn.com/gm-1478691600730.jpg" rel="gallery_cjf53v6pc0008lr41gpui21hq"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="http://ofnd4wjbn.bkt.clouddn.com/gm-1478691600730.jpg" itemprop="contentUrl"/>
               </a>
@@ -1366,7 +1331,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
