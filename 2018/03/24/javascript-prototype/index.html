@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="javascript," />
+  <meta name="keywords" content="javascript prototype," />
 
 
 
@@ -93,18 +93,20 @@
 
 
 
-<meta name="description" content="在平时写代码时，经常会对两个值做是否相等的比较，这看上去是非常简单，不值一提的事情，但有一些小细节，一定要注意。 等于（宽松相等） == 相等操作符比较两个值是否相等，在比较前将两个被比较的值转换为相同类型。在转换后（等式的一边或两边都可能被转换），最终的比较方式等同于全等操作符 === 的比较方式。  转换规则如下：  如果其中一个操作数的类型为 Boolean ，那么，首先将它转换为数字类型，">
-<meta name="keywords" content="javascript">
+<meta name="description" content="上一篇我们谈到了Object和Function的混乱关系，那么这一篇就来理一理。 在JavaScript中，所有对象都是由函数创建的，请看下面代码： 1var obj = &amp;#123; key: &quot;value&quot;&amp;#125; 在如上代码中，obj 虽然是由字面量方式创建的，但它只是new Object()构建方式的语法糖，而Object是一个函数：typeof(object) // function">
+<meta name="keywords" content="javascript prototype">
 <meta property="og:type" content="article">
-<meta property="og:title" content="javascript基础知识篇一 —— 等于和全等">
-<meta property="og:url" content="http://blog.rossroma.com/2017/12/20/javascript-1/index.html">
+<meta property="og:title" content="谈谈JavaScript的prototype">
+<meta property="og:url" content="http://blog.rossroma.com/2018/03/24/javascript-prototype/index.html">
 <meta property="og:site_name" content="Rossroma&#39;s Blog">
-<meta property="og:description" content="在平时写代码时，经常会对两个值做是否相等的比较，这看上去是非常简单，不值一提的事情，但有一些小细节，一定要注意。 等于（宽松相等） == 相等操作符比较两个值是否相等，在比较前将两个被比较的值转换为相同类型。在转换后（等式的一边或两边都可能被转换），最终的比较方式等同于全等操作符 === 的比较方式。  转换规则如下：  如果其中一个操作数的类型为 Boolean ，那么，首先将它转换为数字类型，">
+<meta property="og:description" content="上一篇我们谈到了Object和Function的混乱关系，那么这一篇就来理一理。 在JavaScript中，所有对象都是由函数创建的，请看下面代码： 1var obj = &amp;#123; key: &quot;value&quot;&amp;#125; 在如上代码中，obj 虽然是由字面量方式创建的，但它只是new Object()构建方式的语法糖，而Object是一个函数：typeof(object) // function">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-20T14:53:59.000Z">
+<meta property="og:image" content="http://onwyepk1v.bkt.clouddn.com/181637013624694.png">
+<meta property="og:updated_time" content="2018-03-26T08:40:17.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="javascript基础知识篇一 —— 等于和全等">
-<meta name="twitter:description" content="在平时写代码时，经常会对两个值做是否相等的比较，这看上去是非常简单，不值一提的事情，但有一些小细节，一定要注意。 等于（宽松相等） == 相等操作符比较两个值是否相等，在比较前将两个被比较的值转换为相同类型。在转换后（等式的一边或两边都可能被转换），最终的比较方式等同于全等操作符 === 的比较方式。  转换规则如下：  如果其中一个操作数的类型为 Boolean ，那么，首先将它转换为数字类型，">
+<meta name="twitter:title" content="谈谈JavaScript的prototype">
+<meta name="twitter:description" content="上一篇我们谈到了Object和Function的混乱关系，那么这一篇就来理一理。 在JavaScript中，所有对象都是由函数创建的，请看下面代码： 1var obj = &amp;#123; key: &quot;value&quot;&amp;#125; 在如上代码中，obj 虽然是由字面量方式创建的，但它只是new Object()构建方式的语法糖，而Object是一个函数：typeof(object) // function">
+<meta name="twitter:image" content="http://onwyepk1v.bkt.clouddn.com/181637013624694.png">
 
 
 
@@ -132,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://blog.rossroma.com/2017/12/20/javascript-1/"/>
+  <link rel="canonical" href="http://blog.rossroma.com/2018/03/24/javascript-prototype/"/>
 
 
 
 
 
-  <title>javascript基础知识篇一 —— 等于和全等 | Rossroma's Blog</title>
+  <title>谈谈JavaScript的prototype | Rossroma's Blog</title>
   
 
 
@@ -277,7 +279,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://blog.rossroma.com/2017/12/20/javascript-1/">
+    <link itemprop="mainEntityOfPage" href="http://blog.rossroma.com/2018/03/24/javascript-prototype/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ross roma">
@@ -294,7 +296,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">javascript基础知识篇一 —— 等于和全等</h1>
+          <h1 class="post-title" itemprop="name headline">谈谈JavaScript的prototype</h1>
         
 
         <div class="post-meta">
@@ -306,8 +308,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-20T21:50:53+08:00">
-                2017-12-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-24T21:39:08+08:00">
+                2018-03-24
               </time>
             
 
@@ -347,9 +349,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/12/20/javascript-1/#comments" itemprop="discussionUrl">
+                <a href="/2018/03/24/javascript-prototype/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/12/20/javascript-1/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/03/24/javascript-prototype/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -374,38 +376,17 @@
       
 
       
-        <p>在平时写代码时，经常会对两个值做是否相等的比较，这看上去是非常简单，不值一提的事情，但有一些小细节，一定要注意。</p>
-<h3 id="等于（宽松相等）"><a href="#等于（宽松相等）" class="headerlink" title="等于（宽松相等） =="></a>等于（宽松相等） ==</h3><blockquote>
-<p>相等操作符比较两个值是否相等，在比较前将两个被比较的值转换为相同类型。在转换后（等式的一边或两边都可能被转换），最终的比较方式等同于全等操作符 === 的比较方式。</p>
-</blockquote>
-<p>转换规则如下：</p>
-<ul>
-<li>如果其中一个操作数的类型为 Boolean ，那么，首先将它转换为数字类型，false 转换为 0, true 将转换为 1。</li>
-<li>如果其中一个操作数的类型是字符串，另外一个为数字类型，那么，将字符串转换为数字进行比较。</li>
-<li>如果其中一个操作数的类型是字符串，另外一个为 object 类型，那么，将调用对象的 toString 方法之后，比较字符串。</li>
-<li>如果其中一个操作数的类型是数字类型，另外一个为 object 类型，那么，将对象转换为数值后进行数字比较。</li>
-</ul>
-<p>以下规定了一些特殊的比较：</p>
-<ul>
-<li>null 和 undefined 是相等的。</li>
-<li>null 和 undefined 不会转换为任何其他类型</li>
-<li>如果任何一个操作的结果为 NaN，那么相等比较返回 false，不相等比较返回 true。注意，即使两个操作数都为 NaN，返回结果一样是 false，也就是说，NaN 不等于 NaN。</li>
-<li>如果两个操作数都是对象，那么比较它们引用的值，如果引用同一个对象，那么，返回真，否则，返回假。</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// DEMO</span></span><br><span class="line"></span><br><span class="line"><span class="literal">null</span> ==	<span class="literal">undefined</span></span><br><span class="line">  =&gt; <span class="literal">true</span></span><br><span class="line"><span class="literal">false</span> == <span class="number">0</span></span><br><span class="line">  =&gt; <span class="literal">true</span></span><br><span class="line"><span class="literal">true</span> == <span class="number">1</span></span><br><span class="line">  =&gt; <span class="literal">true</span></span><br><span class="line"><span class="number">0</span> == <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">"0"</span>)</span><br><span class="line">  =&gt; <span class="literal">true</span></span><br><span class="line"><span class="literal">undefined</span> == <span class="literal">false</span></span><br><span class="line">  =&gt; <span class="literal">false</span></span><br><span class="line"><span class="literal">null</span> == <span class="literal">false</span></span><br><span class="line">  =&gt; <span class="literal">false</span></span><br><span class="line"><span class="literal">NaN</span> == <span class="literal">NaN</span></span><br><span class="line">  =&gt; <span class="literal">false</span></span><br></pre></td></tr></table></figure>
-<h3 id="全等（严格相等）"><a href="#全等（严格相等）" class="headerlink" title="全等（严格相等） ==="></a>全等（严格相等） ===</h3><blockquote>
-<p>全等操作符比较两个值是否相等，两个被比较的值在比较前都不进行隐式转换。如果两个被比较的值具有不同的类型，这两个值是不全等的。</p>
-</blockquote>
-<ul>
-<li>两个被比较的值类型相同，值也相同，并且都不是 number 类型时，两个值全等</li>
-<li>两个值都是 number 类型，当两个都不是 NaN，并且数值相同，或是两个值分别为 +0 和 -0 时，两个值被认为是全等的</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// DEMO</span></span><br><span class="line"></span><br><span class="line"><span class="number">0</span> === <span class="string">"0"</span></span><br><span class="line">  =&gt; <span class="literal">false</span></span><br><span class="line"><span class="literal">false</span> === <span class="string">"false"</span></span><br><span class="line">  =&gt; <span class="literal">false</span></span><br><span class="line"><span class="literal">null</span> === <span class="literal">undefined</span></span><br><span class="line">  =&gt; <span class="literal">false</span></span><br><span class="line">+<span class="number">0</span> === <span class="number">-0</span></span><br><span class="line">  =&gt; <span class="literal">true</span></span><br><span class="line"><span class="number">1</span> === <span class="number">1.0</span></span><br><span class="line">  =&gt; <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-<p>看完上面的介绍，是否对 “等于” 和 “全等” 有了更深入的理解呢？如果还是担心自己掌握的不够牢固，那建议你彻底抛弃“等于”，因为“全等”操作符的结果更容易预测，并且因为没有隐式转换，全等比较的操作会更快。</p>
-<h5 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h5><ul>
-<li><a href="https://www.cnblogs.com/haogj/archive/2010/04/24/1719522.html" target="_blank" rel="noopener">Javascript 中的相等与不等</a></li>
-<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Equality_comparisons_and_sameness" target="_blank" rel="noopener">JavaScript 中的相等性判断</a></li>
-</ul>
+        <p>上一篇我们谈到了Object和Function的混乱关系，那么这一篇就来理一理。</p>
+<p>在JavaScript中，所有对象都是由函数创建的，请看下面代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123; <span class="attr">key</span>: <span class="string">"value"</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>在如上代码中，obj 虽然是由字面量方式创建的，但它只是new Object()构建方式的语法糖，而Object是一个函数：<code>typeof(object) // function</code>。所以，对象是由函数创建的，下面我们一步步来解释。</p>
+<p>每个函数function都有一个prototype属性，即原型。prototype本身是一个对象，有一个默认的属性constructor，属性值指向函数本身。而每个对象，都有一个隐式原型<code>__proto__</code>，值为创造该对象的function的prototype。为了证实这个理论，我们将用代码来验证一下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">let</span> obj = <span class="keyword">new</span> <span class="built_in">Object</span>()</span><br><span class="line">&gt; obj.__proto__ === <span class="built_in">Object</span>.prototype</span><br><span class="line">&lt; <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">&gt; <span class="keyword">let</span> obj2 = &#123;&#125;</span><br><span class="line">&gt; obj2.__proto__ === <span class="built_in">Object</span>.prototype</span><br><span class="line">&lt; <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>根据上面的代码，我们可以看出，不管是由哪种方式创建的对象，其<code>__proto__</code>都指向了Object的原型，所以，它们都是通过Object函数来创建的。</p>
+<p><img src="http://onwyepk1v.bkt.clouddn.com/181637013624694.png" alt="8163701362469"></p>
+<p>上面是一张大而全的关系图，我们试着捋一捋：首先，f1和f2是通过new Foo()的方式创建的，他们的<code>__proto__</code>指向了构造函数Foo.prototype，这个Foo.prototype也是一个对象，它的<code>__proto__</code>指向了Object.prototype，这说明了函数本身也是一个对象，而Object.prototype的<code>__proto__</code>的值为null，感觉像是到达了一个终点。</p>
+<p>接着再捋一捋另一条路线，因为函数本身也是对象，所以函数也有自己的<code>__proto__</code>，如图，Object的<code>__proto__</code>指向了Function.prototype，说明Object是由Function创建的。而Function的<code>__proto__</code>指向了自己的prototype，这说明Function也是由Function创建的。</p>
+<p>至此，大致理清了Object与Function的奇妙关系，所有对象都是由函数创建的，而函数本身，也是一种对象。</p>
 
       
     </div>
@@ -435,7 +416,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/javascript/" rel="tag"># javascript</a>
+            <a href="/tags/javascript-prototype/" rel="tag"># javascript prototype</a>
           
         </div>
       
@@ -448,8 +429,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/31/kindle/" rel="next" title="如何将电子书放到kindle中">
-                <i class="fa fa-chevron-left"></i> 如何将电子书放到kindle中
+              <a href="/2018/03/24/javascript-object/" rel="next" title="谈谈JavaScript中的对象">
+                <i class="fa fa-chevron-left"></i> 谈谈JavaScript中的对象
               </a>
             
           </div>
@@ -457,10 +438,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/04/how-to-location-bug/" rel="prev" title="前端开发—如何快速定位错误">
-                前端开发—如何快速定位错误 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -515,17 +492,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://avatars0.githubusercontent.com/u/6183683?v=3&s=400"
@@ -598,22 +566,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#等于（宽松相等）"><span class="nav-number">1.</span> <span class="nav-text">等于（宽松相等） ==</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#全等（严格相等）"><span class="nav-number">2.</span> <span class="nav-text">全等（严格相等） ===</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#参考链接"><span class="nav-number">2.0.1.</span> <span class="nav-text">参考链接</span></a></li></ol></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -751,9 +703,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://blog.rossroma.com/2017/12/20/javascript-1/';
-          this.page.identifier = '2017/12/20/javascript-1/';
-          this.page.title = 'javascript基础知识篇一 —— 等于和全等';
+          this.page.url = 'http://blog.rossroma.com/2018/03/24/javascript-prototype/';
+          this.page.identifier = '2018/03/24/javascript-prototype/';
+          this.page.title = '谈谈JavaScript的prototype';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://rossroma-blog.disqus.com/embed.js';
