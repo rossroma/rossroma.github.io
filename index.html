@@ -1,23 +1,1062 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
 
-{% block title %}{{ config.title }}{% if theme.index_with_subtitle and config.subtitle %} - {{config.subtitle }}{% endif %}{% endblock %}
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block page_class %}
-  {% if is_home() %} page-home {% endif %}
-{% endblock %}
+<link rel="stylesheet" href="/css/main.css">
 
-{% block content %}
-  <section id="posts" class="posts-expand">
-    {% for post in page.posts %}
-      {{ post_template.render(post, true) }}
-    {% endfor %}
-  </section>
 
-  {% include '_partials/pagination.swig' %}
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(false) }}
-{% endblock %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.rossroma.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.17.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta property="og:type" content="website">
+<meta property="og:title" content="Rossroma&#39;s Blog">
+<meta property="og:url" content="http://blog.rossroma.com/index.html">
+<meta property="og:site_name" content="Rossroma&#39;s Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="ross roma">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://blog.rossroma.com/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"index.html","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Rossroma's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Rossroma's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ross roma"
+      src="https://avatars0.githubusercontent.com/u/6183683?v=3&s=400">
+  <p class="site-author-name" itemprop="name">ross roma</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/rossroma" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;rossroma" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:rossromay@gmail.com" title="E-Mail → mailto:rossromay@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/rossroma" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;rossroma" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://blog.rossroma.com/2018/03/24/javascript-prototype/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/6183683?v=3&s=400">
+      <meta itemprop="name" content="ross roma">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Rossroma's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Rossroma's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2018/03/24/javascript-prototype/" class="post-title-link" itemprop="url">谈谈JavaScript的prototype</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-03-24 21:39:08" itemprop="dateCreated datePublished" datetime="2018-03-24T21:39:08+08:00">2018-03-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2018-03-26 16:40:17" itemprop="dateModified" datetime="2018-03-26T16:40:17+08:00">2018-03-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2018/03/24/javascript-prototype/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/03/24/javascript-prototype/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>上一篇我们谈到了Object和Function的混乱关系，那么这一篇就来理一理。</p>
+<p>在JavaScript中，所有对象都是由函数创建的，请看下面代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123; <span class="attr">key</span>: <span class="string">&quot;value&quot;</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在如上代码中，obj 虽然是由字面量方式创建的，但它只是new Object()构建方式的语法糖，而Object是一个函数：<code>typeof(object) // function</code>。所以，对象是由函数创建的，下面我们一步步来解释。</p>
+<p>每个函数function都有一个prototype属性，即原型。prototype本身是一个对象，有一个默认的属性constructor，属性值指向函数本身。而每个对象，都有一个隐式原型<code>__proto__</code>，值为创造该对象的function的prototype。为了证实这个理论，我们将用代码来验证一下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">let</span> obj = <span class="keyword">new</span> <span class="title class_">Object</span>()</span><br><span class="line">&gt; obj.<span class="property">__proto__</span> === <span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span></span><br><span class="line">&lt; <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">&gt; <span class="keyword">let</span> obj2 = &#123;&#125;</span><br><span class="line">&gt; obj2.<span class="property">__proto__</span> === <span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span></span><br><span class="line">&lt; <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>根据上面的代码，我们可以看出，不管是由哪种方式创建的对象，其<code>__proto__</code>都指向了Object的原型，所以，它们都是通过Object函数来创建的。</p>
+<p><img src="http://onwyepk1v.bkt.clouddn.com/181637013624694.png" alt="8163701362469"></p>
+<p>上面是一张大而全的关系图，我们试着捋一捋：首先，f1和f2是通过new Foo()的方式创建的，他们的<code>__proto__</code>指向了构造函数Foo.prototype，这个Foo.prototype也是一个对象，它的<code>__proto__</code>指向了Object.prototype，这说明了函数本身也是一个对象，而Object.prototype的<code>__proto__</code>的值为null，感觉像是到达了一个终点。</p>
+<p>接着再捋一捋另一条路线，因为函数本身也是对象，所以函数也有自己的<code>__proto__</code>，如图，Object的<code>__proto__</code>指向了Function.prototype，说明Object是由Function创建的。而Function的<code>__proto__</code>指向了自己的prototype，这说明Function也是由Function创建的。</p>
+<p>至此，大致理清了Object与Function的奇妙关系，所有对象都是由函数创建的，而函数本身，也是一种对象。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://blog.rossroma.com/2018/03/24/javascript-object/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/6183683?v=3&s=400">
+      <meta itemprop="name" content="ross roma">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Rossroma's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Rossroma's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2018/03/24/javascript-object/" class="post-title-link" itemprop="url">谈谈JavaScript中的对象</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-03-24 15:26:56" itemprop="dateCreated datePublished" datetime="2018-03-24T15:26:56+08:00">2018-03-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2018-03-26 16:33:39" itemprop="dateModified" datetime="2018-03-26T16:33:39+08:00">2018-03-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2018/03/24/javascript-object/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/03/24/javascript-object/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>JavaScript中有很多让人迷惑的地方，比如有人说JavaScript中一切皆对象，但又有一个Object类型，还有下面的代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="literal">null</span>.<span class="property"><span class="keyword">prototype</span></span></span><br><span class="line">&lt; <span class="title class_">TypeError</span>: <span class="literal">null</span> is not an object (evaluating <span class="string">&#x27;null.prototype&#x27;</span>)</span><br><span class="line">&gt; <span class="keyword">typeof</span> <span class="literal">null</span></span><br><span class="line">&lt; <span class="string">&quot;object&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>当我们试图去访问null的原型时，被提示null不是一个对象，但我们使用typeof判断其类型时，得到的却是object。</p>
+<blockquote>
+<p>我觉得可以将JavaScript中的所有类型划分为3类：</p>
+<ul>
+<li>第一类是null和undefined，这是两个比较特殊的类型，这里不做展开介绍；</li>
+<li>第二类是String、Number、Boolean和Symbol，它们可以通过对象的形式被创建，如<code>Boolean(true), Number(3), String(9)</code>等，这时它们为对象类型。但通常我们不会也不推荐这么做，我们会使用字面量的方式创建，如<code>let isShow = true; let num = 45</code>，这是它们属于基本类型，而非对象类型；</li>
+<li>第三类是我们通常所定义的Object类型，它们都是引用类型，原型都指向Object，有Object，Array，Function，Set，Map，RegExp，Date等。其中Object可以算作纯Object类型，根正苗红的那种，具体表现形式为一个大括号，里面包含了0或多个键值对，其他的可以算作是Object的子集。</li>
+</ul>
+</blockquote>
+<p>接下来我们主要讲讲通常所定义的Object类型，即第三类，先看下面代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">typeof</span> <span class="title class_">Object</span></span><br><span class="line">&lt; <span class="string">&quot;function&quot;</span></span><br><span class="line">&gt; <span class="keyword">typeof</span> <span class="title class_">Array</span></span><br><span class="line">&lt; <span class="string">&quot;function&quot;</span></span><br><span class="line">&gt; <span class="keyword">typeof</span> <span class="title class_">Date</span></span><br><span class="line">&lt; <span class="string">&quot;function&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>我们又惊奇的发现，这些所谓的Object，竟然是个function，那么它俩究竟是什么关系呢？其实，所有的引用类型都是通过构造函数来创建的，而构造函数的原型是Object。所以，如果你理解了下面的代码，你就能明白Object和Function的关系了：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="title class_">Object</span> <span class="keyword">instanceof</span> <span class="title class_">Function</span></span><br><span class="line">&lt; <span class="literal">true</span></span><br><span class="line">&gt; <span class="title class_">Function</span> <span class="keyword">instanceof</span> <span class="title class_">Object</span></span><br><span class="line">&lt; <span class="literal">true</span></span><br><span class="line">&gt; <span class="title class_">Object</span> <span class="keyword">instanceof</span> <span class="title class_">Object</span></span><br><span class="line">&lt; <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>什么？还是感觉很混乱吗？那就要了解一下prototype了，请看下篇。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://blog.rossroma.com/2018/02/04/how-to-location-bug/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/6183683?v=3&s=400">
+      <meta itemprop="name" content="ross roma">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Rossroma's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Rossroma's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2018/02/04/how-to-location-bug/" class="post-title-link" itemprop="url">前端开发—如何快速定位错误</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-02-04 13:09:12" itemprop="dateCreated datePublished" datetime="2018-02-04T13:09:12+08:00">2018-02-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2018-02-13 23:42:24" itemprop="dateModified" datetime="2018-02-13T23:42:24+08:00">2018-02-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2018/02/04/how-to-location-bug/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/02/04/how-to-location-bug/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>写代码时，通常要耗费大量的时间去排查bug产生的原因，如何快速的定位bug，在很大程度上决定了你的开发效率。下面是我的一些经验分享。</p>
+<h3 id="提高编码质量"><a href="#提高编码质量" class="headerlink" title="提高编码质量"></a>提高编码质量</h3><p>在一个项目足够简单时，往往不会意识到编码规范和代码质量的重要性。当项目大到需要多人协作或是接收别人的代码时，你就会意识到，编码规范的统一、项目结构的设计、代码的易读性和规范的注释是多么重要。</p>
+<h5 id="提高编码质量不仅仅可以帮你快速的定位到bug，更能有效的减少bug数量。糟糕的代码就像堆在一起的杂物，而高质量的代码就像是分门别类的收纳箱，在找东西时-，哪个效率更高是显而易见的。"><a href="#提高编码质量不仅仅可以帮你快速的定位到bug，更能有效的减少bug数量。糟糕的代码就像堆在一起的杂物，而高质量的代码就像是分门别类的收纳箱，在找东西时-，哪个效率更高是显而易见的。" class="headerlink" title="提高编码质量不仅仅可以帮你快速的定位到bug，更能有效的减少bug数量。糟糕的代码就像堆在一起的杂物，而高质量的代码就像是分门别类的收纳箱，在找东西时 ，哪个效率更高是显而易见的。"></a>提高编码质量不仅仅可以帮你快速的定位到bug，更能有效的减少bug数量。糟糕的代码就像堆在一起的杂物，而高质量的代码就像是分门别类的收纳箱，在找东西时 ，哪个效率更高是显而易见的。</h5><p>当然，提高编码质量不是一蹴而就的，需要有扎实的基础知识，良好的编码规范，以及日积月累的犯错经验。之后可以专门写一篇文章，来介绍如何编写高质量的代码。</p>
+<h3 id="阅读报错信息"><a href="#阅读报错信息" class="headerlink" title="阅读报错信息"></a>阅读报错信息</h3><p>如果浏览器有输出错误信息，那么根据错误信息，我们就能大致判断出错误类型以及可能出错的原因。</p>
+<p>比如:</p>
+<ul>
+<li>根据如下报错信息，我们看到，代码在运行时，试图去访问某一对象的<code>attr</code>属性，而该对象并没有被定义。这时候，我们只要在出错的页面去检索关键词<code>attr</code>，输出<code>attr</code>所依赖的对象，就知道错误出在哪儿了</li>
+</ul>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Uncaught TypeError: Cannot <span class="keyword">read</span> property <span class="comment">&#x27;attr&#x27; of undefined</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>map是数组才有的方法，这里可以预见的是，a并不是一个数组，结果就是 a 没有达到我们预期的格式</li>
+</ul>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Uncaught TypeError: a.map is <span class="keyword">not</span> a function</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>js代码格式错误，通常ESLint会输出报错，检查一下引号、逗号、小括号、大括号是否写完整</li>
+</ul>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Uncaught SyntaxError: Invalid <span class="keyword">or</span> unexpected token</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><p>有时候，即便是看懂了报错信息，也不清楚自己的代码到底出了什么问题。你可以把报错信息复制下来，去stackoverflow，segmentfault等专业问答网站去检索一下，如果找到不到合理的答案，还可以去google或百度去搜。要相信，总有人会和你遇到过类似的问题。</p>
+<p>​</p>
+</li>
+</ul>
+<h3 id="善用console"><a href="#善用console" class="headerlink" title="善用console"></a>善用console</h3><p>有时候，代码不能以期望的方式运行，但又没有输出任何有效的错误信息，我们可以使用console方法，将必要的信息打印出来。</p>
+<h5 id="如何使用？"><a href="#如何使用？" class="headerlink" title="如何使用？"></a>如何使用？</h5><p>比如，但我们点击提交按钮时，并没有发起提交请求。这时，我们要查看源码，找出从点击提交按钮一直到发起请求中间，都执行了哪些步骤。并将关键步骤处的关键信息输出，比如if else的判断条件、被遍历的数组和对象，以及可能中断执行的return语句。</p>
+<h5 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h5><p>在使用console输出时，建议带上关键词，且不建议使用无意义的数字、字母等：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// good</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;attrValue&#x27;</span>, <span class="variable language_">this</span>.<span class="property">attrValue</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;getModule方法的判断条件&#x27;</span>, isShow)</span><br><span class="line"></span><br><span class="line"><span class="comment">// bad</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">666</span>, <span class="variable language_">this</span>.<span class="property">attrValue</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(isShow)</span><br></pre></td></tr></table></figure>
+
+<p>另外，在错误排除后，建议删除不再使用的console调试代码，避免在查找其他错误时，造成不必要的干扰。</p>
+<p>如果输出的是对象或数组，有可能得到不准确的结果</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">	<span class="attr">key</span>: <span class="number">1234</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj) <span class="comment">// &#123;key: 555&#125;</span></span><br><span class="line">obj.<span class="property">key</span> = <span class="number">555</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="打断点"><a href="#打断点" class="headerlink" title="打断点"></a>打断点</h3><p>Chrome的开发者工具有一个很好用的代码调试工具，就是Breakpoints（断点），与console不同的是，它会在断点处终止程序的执行，可以方便的看到代码在哪一步产生了问题。</p>
+<p>相比在代码里写debugger打断点的方式，Chrome的调试工具即便捷，又不产生副作用，所以不推荐在代码里写debugger的方式来调试。</p>
+<p>更多关于Chrome开发者工具的介绍与使用信息，可移步：<a target="_blank" rel="noopener" href="http://blog.csdn.net/csdnligao/article/details/53925094">chrome开发者工具的使用</a></p>
+<h3 id="排除法"><a href="#排除法" class="headerlink" title="排除法"></a>排除法</h3><p>这个方法之前明明是正常的，我并没有改动它，只是在其他地方加了一些代码，它就不正常了。</p>
+<p>怎么办？假使页面中一共有abcd四个方法，我们逐次注释掉a, b , c , d，每注释掉一个就运行一次代码，如果在注释掉d以后，代码运行正常了，那么问题就出在d身上。</p>
+<h3 id="剥离法"><a href="#剥离法" class="headerlink" title="剥离法"></a>剥离法</h3><p>如果页面的代码量很大，用排除法效率可能会很低，这时候我们可以试试剥离法。</p>
+<p>同样一个方法（组件），在A页面运行没有问题，放到B页面就不行。这时候，可以建一个新的页面，里面只放这一个组件，然后运行，如果没有异常，首先可以排除，不是这个组件的问题。接下来，把B页面可能对该方法（组件）造成影响的条件，逐次添加进来，看看到底是哪个条件造成了异常。</p>
+<h3 id="线上故障排除"><a href="#线上故障排除" class="headerlink" title="线上故障排除"></a>线上故障排除</h3><p>有时候线上代码出了故障，而本地又无法重现，由于线上代码不能使用console，并且上线代码都经过了压缩混淆，导致很难调试。</p>
+<p>这时候可以试试sourceMap，在webpack的配置文件中开启sourceMap，在打包的时候会生成对应的.map文件。然后将打包过的文件整体上传到服务器，这样调试线上代码时，除了压缩混淆过的代码，还会有一份原始代码，方便打断点和阅读代码。</p>
+<p>不过这样做也会有一些缺点，一是打包时间会变长，二是将原生代码暴露出去。所以，平时建议关闭sourceMap功能，只有在修复无法在本地重现的线上bug时再使用。而且，在修复完毕后，重新打一个没有sourceMap的包，上传到服务器，避免本地代码泄露。</p>
+<h6 id="关于sourceMap的更多介绍可以移步以下几个链接："><a href="#关于sourceMap的更多介绍可以移步以下几个链接：" class="headerlink" title="关于sourceMap的更多介绍可以移步以下几个链接："></a>关于sourceMap的更多介绍可以移步以下几个链接：</h6><p><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2013/01/javascript_source_map.html">JavaScript Source Map 详解</a></p>
+<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000008315937">打破砂锅问到底：详解Webpack中的sourcemap</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://blog.rossroma.com/2017/12/20/javascript-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/6183683?v=3&s=400">
+      <meta itemprop="name" content="ross roma">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Rossroma's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Rossroma's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2017/12/20/javascript-1/" class="post-title-link" itemprop="url">javascript基础知识篇一 —— 等于和全等</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2017-12-20 21:50:53 / 修改时间：22:53:59" itemprop="dateCreated datePublished" datetime="2017-12-20T21:50:53+08:00">2017-12-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2017/12/20/javascript-1/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/12/20/javascript-1/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>在平时写代码时，经常会对两个值做是否相等的比较，这看上去是非常简单，不值一提的事情，但有一些小细节，一定要注意。</p>
+<h3 id="等于（宽松相等）-x3D-x3D"><a href="#等于（宽松相等）-x3D-x3D" class="headerlink" title="等于（宽松相等） &#x3D;&#x3D;"></a>等于（宽松相等） &#x3D;&#x3D;</h3><blockquote>
+<p>相等操作符比较两个值是否相等，在比较前将两个被比较的值转换为相同类型。在转换后（等式的一边或两边都可能被转换），最终的比较方式等同于全等操作符 &#x3D;&#x3D;&#x3D; 的比较方式。</p>
+</blockquote>
+<p>转换规则如下：</p>
+<ul>
+<li>如果其中一个操作数的类型为 Boolean ，那么，首先将它转换为数字类型，false 转换为 0, true 将转换为 1。</li>
+<li>如果其中一个操作数的类型是字符串，另外一个为数字类型，那么，将字符串转换为数字进行比较。</li>
+<li>如果其中一个操作数的类型是字符串，另外一个为 object 类型，那么，将调用对象的 toString 方法之后，比较字符串。</li>
+<li>如果其中一个操作数的类型是数字类型，另外一个为 object 类型，那么，将对象转换为数值后进行数字比较。</li>
+</ul>
+<p>以下规定了一些特殊的比较：</p>
+<ul>
+<li>null 和 undefined 是相等的。</li>
+<li>null 和 undefined 不会转换为任何其他类型</li>
+<li>如果任何一个操作的结果为 NaN，那么相等比较返回 false，不相等比较返回 true。注意，即使两个操作数都为 NaN，返回结果一样是 false，也就是说，NaN 不等于 NaN。</li>
+<li>如果两个操作数都是对象，那么比较它们引用的值，如果引用同一个对象，那么，返回真，否则，返回假。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// DEMO</span></span><br><span class="line"></span><br><span class="line"><span class="literal">null</span> ==	<span class="function"><span class="params">undefined</span></span></span><br><span class="line"><span class="function">  =&gt;</span> <span class="literal">true</span></span><br><span class="line"><span class="literal">false</span> == <span class="number">0</span></span><br><span class="line">  =&gt; <span class="literal">true</span></span><br><span class="line"><span class="literal">true</span> == <span class="number">1</span></span><br><span class="line">  =&gt; <span class="literal">true</span></span><br><span class="line"><span class="number">0</span> == <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;0&quot;</span>)</span><br><span class="line">  =&gt; <span class="literal">true</span></span><br><span class="line"><span class="literal">undefined</span> == <span class="function"><span class="params">false</span></span></span><br><span class="line"><span class="function">  =&gt;</span> <span class="literal">false</span></span><br><span class="line"><span class="literal">null</span> == <span class="function"><span class="params">false</span></span></span><br><span class="line"><span class="function">  =&gt;</span> <span class="literal">false</span></span><br><span class="line"><span class="title class_">NaN</span> == <span class="function"><span class="params">NaN</span></span></span><br><span class="line"><span class="function">  =&gt;</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="全等（严格相等）-x3D-x3D-x3D"><a href="#全等（严格相等）-x3D-x3D-x3D" class="headerlink" title="全等（严格相等） &#x3D;&#x3D;&#x3D;"></a>全等（严格相等） &#x3D;&#x3D;&#x3D;</h3><blockquote>
+<p>全等操作符比较两个值是否相等，两个被比较的值在比较前都不进行隐式转换。如果两个被比较的值具有不同的类型，这两个值是不全等的。</p>
+</blockquote>
+<ul>
+<li>两个被比较的值类型相同，值也相同，并且都不是 number 类型时，两个值全等</li>
+<li>两个值都是 number 类型，当两个都不是 NaN，并且数值相同，或是两个值分别为 +0 和 -0 时，两个值被认为是全等的</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// DEMO</span></span><br><span class="line"></span><br><span class="line"><span class="number">0</span> === <span class="string">&quot;0&quot;</span></span><br><span class="line">  =&gt; <span class="literal">false</span></span><br><span class="line"><span class="literal">false</span> === <span class="string">&quot;false&quot;</span></span><br><span class="line">  =&gt; <span class="literal">false</span></span><br><span class="line"><span class="literal">null</span> === <span class="function"><span class="params">undefined</span></span></span><br><span class="line"><span class="function">  =&gt;</span> <span class="literal">false</span></span><br><span class="line">+<span class="number">0</span> === -<span class="number">0</span></span><br><span class="line">  =&gt; <span class="literal">true</span></span><br><span class="line"><span class="number">1</span> === <span class="number">1.0</span></span><br><span class="line">  =&gt; <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>看完上面的介绍，是否对 “等于” 和 “全等” 有了更深入的理解呢？如果还是担心自己掌握的不够牢固，那建议你彻底抛弃“等于”，因为“全等”操作符的结果更容易预测，并且因为没有隐式转换，全等比较的操作会更快。</p>
+<h5 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h5><ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/haogj/archive/2010/04/24/1719522.html">Javascript 中的相等与不等</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Equality_comparisons_and_sameness">JavaScript 中的相等性判断</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+    
+    <div class="post-gallery-image">
+      <img src="https://img.rossroma.com/gm-1478691626766.jpg-large" itemprop="contentUrl">
+    </div>
+    </div>
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://blog.rossroma.com/2017/10/31/kindle/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/6183683?v=3&s=400">
+      <meta itemprop="name" content="ross roma">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Rossroma's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Rossroma's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2017/10/31/kindle/" class="post-title-link" itemprop="url">如何将电子书放到kindle中</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-10-31 17:22:59" itemprop="dateCreated datePublished" datetime="2017-10-31T17:22:59+08:00">2017-10-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-06-16 16:24:07" itemprop="dateModified" datetime="2023-06-16T16:24:07+08:00">2023-06-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%9D%82%E9%A1%B9/" itemprop="url" rel="index"><span itemprop="name">杂项</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2017/10/31/kindle/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/10/31/kindle/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>我有一部kindle，如何才能快速把书导入，轻松愉快的阅读呢？嗯… 一般有三种方法，接下来我就为你一一介绍。</p>
+<h3 id="直接在kindle上购买"><a href="#直接在kindle上购买" class="headerlink" title="直接在kindle上购买"></a>直接在kindle上购买</h3><p>在kindle首页的左上方，有一个商店按钮，点进去就是Amazon的电子书商城。你可以在其中找到任何你想要的电子书，直接购买。kindle支持信用卡和支付宝两种支付方式。支付宝需要借助手机或电脑来完成支付。假如你之前有绑定过信用卡，这无疑是最便捷的支付方式，直接选择你绑定的信用卡然后点击下单就完成支付了。</p>
+<h3 id="从电脑中拷贝"><a href="#从电脑中拷贝" class="headerlink" title="从电脑中拷贝"></a>从电脑中拷贝</h3><p>假如Amazon上并没有你想要的电子书，而恰好你的电脑中有，那么你可以用数据线把你的kindle和电脑连接，这时电脑中就会多了一个kindle盘符，我们打开这个盘符会发现有很多的文件夹，其中有一个Documents文件夹是用来存放电子书的，只要把电子书拷贝到这个目录就行了。不过要注意你拷贝进来的电子书，必须是kindle所支持的格式，比如.awz3&#x2F;.mobi&#x2F;.pdf等。</p>
+<h3 id="通过Email，远程发送到kindle中"><a href="#通过Email，远程发送到kindle中" class="headerlink" title="通过Email，远程发送到kindle中"></a>通过Email，远程发送到kindle中</h3><p>很多时候，我们想把一本书存到kindle中，却发现kindle并不在身边，怎么办呢？别担心，一样可以搞定。</p>
+<p>打开Amazon网站，登入和kindle所绑定相同的账户，进入到我的账户——内容和设备——设置页面。拉到页面的最下方，会发现有一个“已认可的发件人电子邮箱列表”，然后点击“添加认可的电子邮箱”，将我们用来发送邮件的邮箱账号填入。只有被正确填入的邮箱账号，才能给kindle发送内容。之后在“〖发送至Kindle〗电子邮箱”中找到kindle被分配的邮箱地址，一般以@kindle.cn结尾，复制这个邮箱地址作为收件人。将要发送的电子书以附件的形式添加到邮件中发送出去，很快，我们的kindle中就会同步这本电子书了。</p>
+<p>kindle虽然支持不少文档格式，但自家的.awz3无疑是体验最好的，如何将其他格式转为.awz3呢？只要在邮件的主题中输入Convert，附件中的.pdf&#x2F;.mobi，甚至是Word文档，通通会自动转为.awz3再存入到kindle中。唯一的一个缺憾是，.epub格式不能被支持，这里推荐一个在线工具，可以将多种文档格式转为.awz3，包括.epub。<a target="_blank" rel="noopener" href="https://convertio.co/">https://convertio.co</a></p>
+<h3 id="批量删除"><a href="#批量删除" class="headerlink" title="批量删除"></a>批量删除</h3><p>有时候，我想批量删除kindle中的电子书或订阅内容，在kindle中逐个操作实在是太繁琐了，有没有便捷的方法呢？</p>
+<p>当然有，还是打开Amazon网站，进入到我的账户——内容和设备——我的内容页面，在这里批量选中你要删除的内容，然后点击删除就可以了。kindle会自动同步这些操作，一并删除。</p>
+<p>错误的方法：将kindle用数据线链接至电脑，直接删除Documents中的文件，这样的操作是无效的，kindle会自动同步Amazon云盘中的内容，将被删除文件同步回来。</p>
+<p>怎么样？这些方法你都掌握了吗？</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+    
+    <div class="post-gallery-image">
+      <img src="https://img.rossroma.com/gm-1478682015538.jpg-large" itemprop="contentUrl">
+    </div>
+    </div>
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://blog.rossroma.com/2017/08/17/big-white-goose/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/6183683?v=3&s=400">
+      <meta itemprop="name" content="ross roma">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Rossroma's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Rossroma's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2017/08/17/big-white-goose/" class="post-title-link" itemprop="url">大白鹅</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-08-17 21:08:34" itemprop="dateCreated datePublished" datetime="2017-08-17T21:08:34+08:00">2017-08-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-06-16 16:24:07" itemprop="dateModified" datetime="2023-06-16T16:24:07+08:00">2023-06-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index"><span itemprop="name">生活随笔</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2017/08/17/big-white-goose/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/08/17/big-white-goose/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>门前的池塘里，有一只大白鹅。长长的脖颈，雪白的羽毛，一双船桨一样的脚掌自如地拨动着水面。它是那样的美，就像天鹅一般。它能像天鹅一样飞翔吗？</p>
+<p>黄昏，池塘里洒满了金色。</p>
+<p>大白鹅游上了岸，它抖了抖翅膀，高傲的扬起它的脖颈，大摇大摆的走在路上。</p>
+<p>它能像天鹅一样飞翔吗？</p>
+<p>我向它追过去，它察觉到我，开始挥动着翅膀，向前奔跑。我跑得愈发快了，它也加快了挥动翅膀的频率，那双巨大而有力的翅膀，将地上厚厚的尘土掀起。两只脚掌如蜻蜓点水一般，刚刚落地就迅速弹起。它越来越快，突然，它的双脚离地了，就像助跑了一段的飞机，倏的起飞了。它用力煽动着翅膀，跨过一段长长的矮篱笆，落在了另一头。</p>
+<p>我高兴极了！</p>
+<p>终有一日，它会飞过那口池塘、飞过一座座屋顶、飞过那片绿油油的麦田，然后消失在橘色夕阳里。</p>
+<p>它能向天鹅一样飞翔。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+    
+    <div class="post-gallery-image">
+      <img src="https://img.rossroma.com/gm-1478691600730.jpg" itemprop="contentUrl">
+    </div>
+    </div>
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://blog.rossroma.com/2017/07/23/hello-world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/6183683?v=3&s=400">
+      <meta itemprop="name" content="ross roma">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Rossroma's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Rossroma's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2017/07/23/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-07-23 17:57:58" itemprop="dateCreated datePublished" datetime="2017-07-23T17:57:58+08:00">2017-07-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-06-16 16:24:07" itemprop="dateModified" datetime="2023-06-16T16:24:07+08:00">2023-06-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index"><span itemprop="name">生活随笔</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2017/07/23/hello-world/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/07/23/hello-world/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>突然心血来潮想写博客了。</p>
+<p>记得第一次写博客，大概是2010年，用的也是这个域名。那时候还是蛮兴奋的，自己买了虚拟主机，注册了域名，用了WordPress博客程序，选了自己喜欢的主题，信誓旦旦的想要把它好好经营下去。大概半年光景，我发现我的兴趣在于折腾博客程序和主题，并不在写作上，在那之后，这个博客就没再更新了。两年后，域名到期，我没有续租，我的第一个博客站点就此消亡了。</p>
+<p>又过了一年，我可能又有些空了，注册了新域名，又搞起了WordPress了，这次和前一次一样，两年后关站。</p>
+<p>去年双十一，阿里云也搞起了五折活动，我就购入了一台入门级云服务器，打算用来跑一些自己做的小应用，顺便把rossroma.com这个域名，重新注册了回来。那段时间，我正打算换个工作，于是就想做一个小应用来练练手，顺便也可以用作面试作品。于是我想到了我多年前的一个想法——“看图猜电影”。</p>
+<p>在开发这个小应用的期间，我接触到了不少新的知识和技能，这其中就有HEXO。它基于nodejs，没有传统的图形管理界面，用Markdown来书写，用Git来发布，这对我来说很新鲜，也很酷。于是，我的第三个博客站点就此诞生了。</p>
+<p>这一次呢，我也不给自己订什么写作目标了，想写就写，反正也不会有人来看，哈哈哈。就当做一个公开的记事本吧。</p>
+<p>写作，是一件很有意义的事情。记得小学的时候，老师经常跟我们讲“好记性不然烂笔头”，我当时是持反对意见的。我觉得老师讲的知识都太简单，我听一遍就会了，根本就不需要写下来，而且知识重要的是理解而不是死记硬背。一晃20年过去了，我又想起了这句话，我觉得这句话说对了一半。“写”下来，固然会加深记忆，但更为重要的是，在写之前，你要先组织好语言。我们在讲话聊天的时候，往往不需要过多的思考，张口就来。而写作就不一样了，你要思考，要有一个编译的过程，即便是写出来了，还要再反复推敲，修修改改。这样一个思考总结的过程，我想就是写作最大的意义所在吧。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ross roma</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"rossroma-blog","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>

@@ -1,38 +1,397 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.rossroma.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.17.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="写代码时，通常要耗费大量的时间去排查bug产生的原因，如何快速的定位bug，在很大程度上决定了你的开发效率。下面是我的一些经验分享。 提高编码质量在一个项目足够简单时，往往不会意识到编码规范和代码质量的重要性。当项目大到需要多人协作或是接收别人的代码时，你就会意识到，编码规范的统一、项目结构的设计、代码的易读性和规范的注释是多么重要。 提高编码质量不仅仅可以帮你快速的定位到bug，更能有效的减少b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端开发—如何快速定位错误">
+<meta property="og:url" content="http://blog.rossroma.com/2018/02/04/how-to-location-bug/index.html">
+<meta property="og:site_name" content="Rossroma&#39;s Blog">
+<meta property="og:description" content="写代码时，通常要耗费大量的时间去排查bug产生的原因，如何快速的定位bug，在很大程度上决定了你的开发效率。下面是我的一些经验分享。 提高编码质量在一个项目足够简单时，往往不会意识到编码规范和代码质量的重要性。当项目大到需要多人协作或是接收别人的代码时，你就会意识到，编码规范的统一、项目结构的设计、代码的易读性和规范的注释是多么重要。 提高编码质量不仅仅可以帮你快速的定位到bug，更能有效的减少b">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-02-04T05:09:12.000Z">
+<meta property="article:modified_time" content="2018-02-13T15:42:24.000Z">
+<meta property="article:author" content="ross roma">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary">
 
 
-{% block content %}
+<link rel="canonical" href="http://blog.rossroma.com/2018/02/04/how-to-location-bug/">
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://blog.rossroma.com/2018/02/04/how-to-location-bug/","path":"2018/02/04/how-to-location-bug/","title":"前端开发—如何快速定位错误"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>前端开发—如何快速定位错误 | Rossroma's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
     </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Rossroma's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
 
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%90%E9%AB%98%E7%BC%96%E7%A0%81%E8%B4%A8%E9%87%8F"><span class="nav-number">1.</span> <span class="nav-text">提高编码质量</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8F%90%E9%AB%98%E7%BC%96%E7%A0%81%E8%B4%A8%E9%87%8F%E4%B8%8D%E4%BB%85%E4%BB%85%E5%8F%AF%E4%BB%A5%E5%B8%AE%E4%BD%A0%E5%BF%AB%E9%80%9F%E7%9A%84%E5%AE%9A%E4%BD%8D%E5%88%B0bug%EF%BC%8C%E6%9B%B4%E8%83%BD%E6%9C%89%E6%95%88%E7%9A%84%E5%87%8F%E5%B0%91bug%E6%95%B0%E9%87%8F%E3%80%82%E7%B3%9F%E7%B3%95%E7%9A%84%E4%BB%A3%E7%A0%81%E5%B0%B1%E5%83%8F%E5%A0%86%E5%9C%A8%E4%B8%80%E8%B5%B7%E7%9A%84%E6%9D%82%E7%89%A9%EF%BC%8C%E8%80%8C%E9%AB%98%E8%B4%A8%E9%87%8F%E7%9A%84%E4%BB%A3%E7%A0%81%E5%B0%B1%E5%83%8F%E6%98%AF%E5%88%86%E9%97%A8%E5%88%AB%E7%B1%BB%E7%9A%84%E6%94%B6%E7%BA%B3%E7%AE%B1%EF%BC%8C%E5%9C%A8%E6%89%BE%E4%B8%9C%E8%A5%BF%E6%97%B6-%EF%BC%8C%E5%93%AA%E4%B8%AA%E6%95%88%E7%8E%87%E6%9B%B4%E9%AB%98%E6%98%AF%E6%98%BE%E8%80%8C%E6%98%93%E8%A7%81%E7%9A%84%E3%80%82"><span class="nav-number">1.0.1.</span> <span class="nav-text">提高编码质量不仅仅可以帮你快速的定位到bug，更能有效的减少bug数量。糟糕的代码就像堆在一起的杂物，而高质量的代码就像是分门别类的收纳箱，在找东西时 ，哪个效率更高是显而易见的。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%85%E8%AF%BB%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF"><span class="nav-number">2.</span> <span class="nav-text">阅读报错信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%96%84%E7%94%A8console"><span class="nav-number">3.</span> <span class="nav-text">善用console</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%EF%BC%9F"><span class="nav-number">3.0.1.</span> <span class="nav-text">如何使用？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">3.0.2.</span> <span class="nav-text">注意事项</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%93%E6%96%AD%E7%82%B9"><span class="nav-number">4.</span> <span class="nav-text">打断点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%92%E9%99%A4%E6%B3%95"><span class="nav-number">5.</span> <span class="nav-text">排除法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%A5%E7%A6%BB%E6%B3%95"><span class="nav-number">6.</span> <span class="nav-text">剥离法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E4%B8%8A%E6%95%85%E9%9A%9C%E6%8E%92%E9%99%A4"><span class="nav-number">7.</span> <span class="nav-text">线上故障排除</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%85%B3%E4%BA%8EsourceMap%E7%9A%84%E6%9B%B4%E5%A4%9A%E4%BB%8B%E7%BB%8D%E5%8F%AF%E4%BB%A5%E7%A7%BB%E6%AD%A5%E4%BB%A5%E4%B8%8B%E5%87%A0%E4%B8%AA%E9%93%BE%E6%8E%A5%EF%BC%9A"><span class="nav-number">7.0.0.1.</span> <span class="nav-text">关于sourceMap的更多介绍可以移步以下几个链接：</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ross roma"
+      src="https://avatars0.githubusercontent.com/u/6183683?v=3&s=400">
+  <p class="site-author-name" itemprop="name">ross roma</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/rossroma" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;rossroma" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:rossromay@gmail.com" title="E-Mail → mailto:rossromay@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/rossroma" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;rossroma" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.rossroma.com/2018/02/04/how-to-location-bug/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/6183683?v=3&s=400">
+      <meta itemprop="name" content="ross roma">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Rossroma's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="前端开发—如何快速定位错误 | Rossroma's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          前端开发—如何快速定位错误
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-02-04 13:09:12" itemprop="dateCreated datePublished" datetime="2018-02-04T13:09:12+08:00">2018-02-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2018-02-13 23:42:24" itemprop="dateModified" datetime="2018-02-13T23:42:24+08:00">2018-02-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2018/02/04/how-to-location-bug/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/02/04/how-to-location-bug/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>写代码时，通常要耗费大量的时间去排查bug产生的原因，如何快速的定位bug，在很大程度上决定了你的开发效率。下面是我的一些经验分享。</p>
+<h3 id="提高编码质量"><a href="#提高编码质量" class="headerlink" title="提高编码质量"></a>提高编码质量</h3><p>在一个项目足够简单时，往往不会意识到编码规范和代码质量的重要性。当项目大到需要多人协作或是接收别人的代码时，你就会意识到，编码规范的统一、项目结构的设计、代码的易读性和规范的注释是多么重要。</p>
+<h5 id="提高编码质量不仅仅可以帮你快速的定位到bug，更能有效的减少bug数量。糟糕的代码就像堆在一起的杂物，而高质量的代码就像是分门别类的收纳箱，在找东西时-，哪个效率更高是显而易见的。"><a href="#提高编码质量不仅仅可以帮你快速的定位到bug，更能有效的减少bug数量。糟糕的代码就像堆在一起的杂物，而高质量的代码就像是分门别类的收纳箱，在找东西时-，哪个效率更高是显而易见的。" class="headerlink" title="提高编码质量不仅仅可以帮你快速的定位到bug，更能有效的减少bug数量。糟糕的代码就像堆在一起的杂物，而高质量的代码就像是分门别类的收纳箱，在找东西时 ，哪个效率更高是显而易见的。"></a>提高编码质量不仅仅可以帮你快速的定位到bug，更能有效的减少bug数量。糟糕的代码就像堆在一起的杂物，而高质量的代码就像是分门别类的收纳箱，在找东西时 ，哪个效率更高是显而易见的。</h5><p>当然，提高编码质量不是一蹴而就的，需要有扎实的基础知识，良好的编码规范，以及日积月累的犯错经验。之后可以专门写一篇文章，来介绍如何编写高质量的代码。</p>
+<h3 id="阅读报错信息"><a href="#阅读报错信息" class="headerlink" title="阅读报错信息"></a>阅读报错信息</h3><p>如果浏览器有输出错误信息，那么根据错误信息，我们就能大致判断出错误类型以及可能出错的原因。</p>
+<p>比如:</p>
+<ul>
+<li>根据如下报错信息，我们看到，代码在运行时，试图去访问某一对象的<code>attr</code>属性，而该对象并没有被定义。这时候，我们只要在出错的页面去检索关键词<code>attr</code>，输出<code>attr</code>所依赖的对象，就知道错误出在哪儿了</li>
+</ul>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Uncaught TypeError: Cannot <span class="keyword">read</span> property <span class="comment">&#x27;attr&#x27; of undefined</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>map是数组才有的方法，这里可以预见的是，a并不是一个数组，结果就是 a 没有达到我们预期的格式</li>
+</ul>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Uncaught TypeError: a.map is <span class="keyword">not</span> a function</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>js代码格式错误，通常ESLint会输出报错，检查一下引号、逗号、小括号、大括号是否写完整</li>
+</ul>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Uncaught SyntaxError: Invalid <span class="keyword">or</span> unexpected token</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><p>有时候，即便是看懂了报错信息，也不清楚自己的代码到底出了什么问题。你可以把报错信息复制下来，去stackoverflow，segmentfault等专业问答网站去检索一下，如果找到不到合理的答案，还可以去google或百度去搜。要相信，总有人会和你遇到过类似的问题。</p>
+<p>​</p>
+</li>
+</ul>
+<h3 id="善用console"><a href="#善用console" class="headerlink" title="善用console"></a>善用console</h3><p>有时候，代码不能以期望的方式运行，但又没有输出任何有效的错误信息，我们可以使用console方法，将必要的信息打印出来。</p>
+<h5 id="如何使用？"><a href="#如何使用？" class="headerlink" title="如何使用？"></a>如何使用？</h5><p>比如，但我们点击提交按钮时，并没有发起提交请求。这时，我们要查看源码，找出从点击提交按钮一直到发起请求中间，都执行了哪些步骤。并将关键步骤处的关键信息输出，比如if else的判断条件、被遍历的数组和对象，以及可能中断执行的return语句。</p>
+<h5 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h5><p>在使用console输出时，建议带上关键词，且不建议使用无意义的数字、字母等：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// good</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;attrValue&#x27;</span>, <span class="variable language_">this</span>.<span class="property">attrValue</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;getModule方法的判断条件&#x27;</span>, isShow)</span><br><span class="line"></span><br><span class="line"><span class="comment">// bad</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">666</span>, <span class="variable language_">this</span>.<span class="property">attrValue</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(isShow)</span><br></pre></td></tr></table></figure>
+
+<p>另外，在错误排除后，建议删除不再使用的console调试代码，避免在查找其他错误时，造成不必要的干扰。</p>
+<p>如果输出的是对象或数组，有可能得到不准确的结果</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">	<span class="attr">key</span>: <span class="number">1234</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj) <span class="comment">// &#123;key: 555&#125;</span></span><br><span class="line">obj.<span class="property">key</span> = <span class="number">555</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="打断点"><a href="#打断点" class="headerlink" title="打断点"></a>打断点</h3><p>Chrome的开发者工具有一个很好用的代码调试工具，就是Breakpoints（断点），与console不同的是，它会在断点处终止程序的执行，可以方便的看到代码在哪一步产生了问题。</p>
+<p>相比在代码里写debugger打断点的方式，Chrome的调试工具即便捷，又不产生副作用，所以不推荐在代码里写debugger的方式来调试。</p>
+<p>更多关于Chrome开发者工具的介绍与使用信息，可移步：<a target="_blank" rel="noopener" href="http://blog.csdn.net/csdnligao/article/details/53925094">chrome开发者工具的使用</a></p>
+<h3 id="排除法"><a href="#排除法" class="headerlink" title="排除法"></a>排除法</h3><p>这个方法之前明明是正常的，我并没有改动它，只是在其他地方加了一些代码，它就不正常了。</p>
+<p>怎么办？假使页面中一共有abcd四个方法，我们逐次注释掉a, b , c , d，每注释掉一个就运行一次代码，如果在注释掉d以后，代码运行正常了，那么问题就出在d身上。</p>
+<h3 id="剥离法"><a href="#剥离法" class="headerlink" title="剥离法"></a>剥离法</h3><p>如果页面的代码量很大，用排除法效率可能会很低，这时候我们可以试试剥离法。</p>
+<p>同样一个方法（组件），在A页面运行没有问题，放到B页面就不行。这时候，可以建一个新的页面，里面只放这一个组件，然后运行，如果没有异常，首先可以排除，不是这个组件的问题。接下来，把B页面可能对该方法（组件）造成影响的条件，逐次添加进来，看看到底是哪个条件造成了异常。</p>
+<h3 id="线上故障排除"><a href="#线上故障排除" class="headerlink" title="线上故障排除"></a>线上故障排除</h3><p>有时候线上代码出了故障，而本地又无法重现，由于线上代码不能使用console，并且上线代码都经过了压缩混淆，导致很难调试。</p>
+<p>这时候可以试试sourceMap，在webpack的配置文件中开启sourceMap，在打包的时候会生成对应的.map文件。然后将打包过的文件整体上传到服务器，这样调试线上代码时，除了压缩混淆过的代码，还会有一份原始代码，方便打断点和阅读代码。</p>
+<p>不过这样做也会有一些缺点，一是打包时间会变长，二是将原生代码暴露出去。所以，平时建议关闭sourceMap功能，只有在修复无法在本地重现的线上bug时再使用。而且，在修复完毕后，重新打一个没有sourceMap的包，上传到服务器，避免本地代码泄露。</p>
+<h6 id="关于sourceMap的更多介绍可以移步以下几个链接："><a href="#关于sourceMap的更多介绍可以移步以下几个链接：" class="headerlink" title="关于sourceMap的更多介绍可以移步以下几个链接："></a>关于sourceMap的更多介绍可以移步以下几个链接：</h6><p><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2013/01/javascript_source_map.html">JavaScript Source Map 详解</a></p>
+<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000008315937">打破砂锅问到底：详解Webpack中的sourcemap</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/javascript/" rel="tag"># javascript</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017/12/20/javascript-1/" rel="prev" title="javascript基础知识篇一 —— 等于和全等">
+                  <i class="fa fa-chevron-left"></i> javascript基础知识篇一 —— 等于和全等
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2018/03/24/javascript-object/" rel="next" title="谈谈JavaScript中的对象">
+                  谈谈JavaScript中的对象 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ross roma</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"rossroma-blog","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>
