@@ -114,7 +114,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -153,6 +153,135 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://blog.rossroma.com/2023/06/30/update-hexo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/6183683?v=3&s=400">
+      <meta itemprop="name" content="ross roma">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Rossroma's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Rossroma's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/06/30/update-hexo/" class="post-title-link" itemprop="url">hexo 升级</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-06-30 09:44:33" itemprop="dateCreated datePublished" datetime="2023-06-30T09:44:33+08:00">2023-06-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-07-03 19:47:32" itemprop="dateModified" datetime="2023-07-03T19:47:32+08:00">2023-07-03</time>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2023/06/30/update-hexo/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/06/30/update-hexo/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>hexo已经几年没用过了，临时想用一下发现依赖版本已经落后太多，无法运行了，这篇博客主要是记录一下hexo的升级过程。</p>
+<h3 id="hexo升级"><a href="#hexo升级" class="headerlink" title="hexo升级"></a>hexo升级</h3><ol>
+<li><p>全局升级hexo-cli，先hexo version查看当前版本，然后npm install -g hexo-cli，再次hexo version查看是否升级成功。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br><span class="line">hexo version</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>全局安装npm-check，用于检测是否有需要升级的依赖。安装成功后，可以使用<code>npm-check -u</code>命令，按照提示选择要升级的依赖。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g npm-check</span><br><span class="line">npm-check -u</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img.rossroma.com/blog/image-20230703172612063.png-large" alt="image-20230703172612063"></p>
+</li>
+<li><p>依赖成功升级后，发现项目并不能正常启动，提示<code>_comfig.yml</code> 中存在无效配置。原因是版本跨度太大，有些配置规范已经被修改了，需要按照官网最新的配置规则进行修改。</p>
+</li>
+<li><p><code>_comfig.yml</code> 修改后，hexo终于可以正常启动了，但是预览发现网页不能被正常解析（如下图），因为我之前使用的主题<code>next</code>也需要升级到最新版本才能适配。</p>
+<p><img src="https://img.rossroma.com/blog/WX20230630-094239@2x.png-large" alt="WX20230630-094239@2x"></p>
+<p>主题升级文档地址：<a target="_blank" rel="noopener" href="https://theme-next.js.org/docs/getting-started/upgrade.html">https://theme-next.js.org/docs/getting-started/upgrade.html</a></p>
+<p>第一步：将原来themes目录下的老主题目录进行备份；</p>
+<p>第二部：用<code>npm install hexo-theme-next</code>安装新的主题；</p>
+<p>第三步：对主题进行配置修改，将<code>node_modules/hexo-theme-next/_config.yml</code>文件拷贝到根目录，然后重命名为<code>_config.next.yml</code>，再将之前备份的主题配置还原到新的配置文件中。</p>
+<p>主题升级完成，启动后预览，发现主题的语言包不是中文，我检查了一下配置文件，之前设置的默认语言是<code>language: zh-Hans</code>，在新版的hexo中简体中文已经改成了<code>zh-CN</code>，与i18n标准保持一致了。</p>
+</li>
+</ol>
+<h3 id="hexo部署"><a href="#hexo部署" class="headerlink" title="hexo部署"></a>hexo部署</h3><p>当我以为hexo已经全部升级完成时，部署又遇到了一些坑</p>
+<ol>
+<li><p>首先就是运行 <code>hexo d</code> 抛出异常，提示<code>Error: EACCES: permission denied, unlink </code>，一般Mac遇到这个问题，就是文件权限的问题，解决方案是删除<code>.deploy_git</code>目录，然后重新部署</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">删除项目根目录下的 .deploy_git</span></span><br><span class="line">sudo rm -rf .deploy_git</span><br><span class="line"></span><br><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>之后运行<code>hexo d</code> 部署发现又失败了，原因是<code>_config.yml</code> 中的repo最好使用ssh地址，使用http地址就会有一定的失败概率；</p>
+<p><img src="https://img.rossroma.com/blog/image-20230703192514771.png-large" alt="image-20230703192514771"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Deployment</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># Docs: https://hexo.io/docs/deployment.html</span></span></span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:rossroma/rossroma.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>最后hexo终于被推送到github了，发现里面的图片全部无法显示了，因为现在大部分网站都已经升级了https，已经无法加载http协议的图片了。由于我的博客搭建的比较早，那时候都还在用http协议的图片，无奈，还要把图片升级一下。</p>
+<p>我的图片都存储在七牛，如果有备案域名的话，可以免费申请一个https证书，过程比较简单，就不赘述了。</p>
+<p>我顺便还给Typora配置了图床，如图：</p>
+<p><img src="https://img.rossroma.com/blog/image-20230703192942773.png-large" alt="image-20230703192942773"></p>
+<p>用的是PicGo，配置比较简单，有中文的说明文档，感兴趣的可以去看一下：<a target="_blank" rel="noopener" href="https://picgo.github.io/PicGo-Doc/%E3%80%82%E9%85%8D%E7%BD%AE%E5%A5%BD%E4%B9%8B%E5%90%8E%EF%BC%8C%E5%9C%A8Typora%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E4%BC%9A%E8%87%AA%E5%8A%A8%E4%B8%8A%E4%BC%A0%E5%88%B0%E4%B8%83%E7%89%9B%E5%B9%B6%E5%B0%86URL%E6%9B%BF%E6%8D%A2%EF%BC%8C%E7%94%A8%E8%B5%B7%E6%9D%A5%E9%9D%9E%E5%B8%B8%E4%B8%9D%E6%BB%91%E3%80%82">https://picgo.github.io/PicGo-Doc/。配置好之后，在Typora中插入图片会自动上传到七牛并将URL替换，用起来非常丝滑。</a></p>
+</li>
+</ol>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>至此，整个升级过程终于结束了，本来我以为只是简单的升级几个依赖，后面却发现耗费了我半天的时间。因此值得写篇文章，记录一下这个过程。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
