@@ -21,14 +21,14 @@
 
     <meta property="og:type" content="website">
 <meta property="og:title" content="Rossroma&#39;s Blog">
-<meta property="og:url" content="http://blog.rossroma.com/index.html">
+<meta property="og:url" content="https://blog.rossroma.com/index.html">
 <meta property="og:site_name" content="Rossroma&#39;s Blog">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="ross roma">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://blog.rossroma.com/">
+<link rel="canonical" href="https://blog.rossroma.com/">
 
 
 
@@ -162,7 +162,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://blog.rossroma.com/2023/06/30/update-hexo/">
+    <link itemprop="mainEntityOfPage" href="https://blog.rossroma.com/2023/06/30/update-hexo/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/6183683?v=3&s=400">
@@ -198,7 +198,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-07-03 19:47:32" itemprop="dateModified" datetime="2023-07-03T19:47:32+08:00">2023-07-03</time>
+      <time title="修改时间：2023-07-03 19:50:16" itemprop="dateModified" datetime="2023-07-03T19:50:16+08:00">2023-07-03</time>
     </span>
 
   
@@ -243,7 +243,7 @@
 <p><img src="https://img.rossroma.com/blog/WX20230630-094239@2x.png-large" alt="WX20230630-094239@2x"></p>
 <p>主题升级文档地址：<a target="_blank" rel="noopener" href="https://theme-next.js.org/docs/getting-started/upgrade.html">https://theme-next.js.org/docs/getting-started/upgrade.html</a></p>
 <p>第一步：将原来themes目录下的老主题目录进行备份；</p>
-<p>第二部：用<code>npm install hexo-theme-next</code>安装新的主题；</p>
+<p>第二步：用<code>npm install hexo-theme-next</code>安装新的主题；</p>
 <p>第三步：对主题进行配置修改，将<code>node_modules/hexo-theme-next/_config.yml</code>文件拷贝到根目录，然后重命名为<code>_config.next.yml</code>，再将之前备份的主题配置还原到新的配置文件中。</p>
 <p>主题升级完成，启动后预览，发现主题的语言包不是中文，我检查了一下配置文件，之前设置的默认语言是<code>language: zh-Hans</code>，在新版的hexo中简体中文已经改成了<code>zh-CN</code>，与i18n标准保持一致了。</p>
 </li>
@@ -291,7 +291,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://blog.rossroma.com/2018/03/24/javascript-prototype/">
+    <link itemprop="mainEntityOfPage" href="https://blog.rossroma.com/2018/03/24/javascript-prototype/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/6183683?v=3&s=400">
@@ -327,7 +327,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2018-03-26 16:40:17" itemprop="dateModified" datetime="2018-03-26T16:40:17+08:00">2018-03-26</time>
+      <time title="修改时间：2023-07-04 09:45:46" itemprop="dateModified" datetime="2023-07-04T09:45:46+08:00">2023-07-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -372,7 +372,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">let</span> obj = <span class="keyword">new</span> <span class="title class_">Object</span>()</span><br><span class="line">&gt; obj.<span class="property">__proto__</span> === <span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span></span><br><span class="line">&lt; <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">&gt; <span class="keyword">let</span> obj2 = &#123;&#125;</span><br><span class="line">&gt; obj2.<span class="property">__proto__</span> === <span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span></span><br><span class="line">&lt; <span class="literal">true</span></span><br></pre></td></tr></table></figure>
 
 <p>根据上面的代码，我们可以看出，不管是由哪种方式创建的对象，其<code>__proto__</code>都指向了Object的原型，所以，它们都是通过Object函数来创建的。</p>
-<p><img src="http://onwyepk1v.bkt.clouddn.com/181637013624694.png" alt="8163701362469"></p>
+<p><img src="https://img.rossroma.com/blog/E8BF35CA-13C3-C29B-42F9-664970D189E1.png-large" alt="img"></p>
 <p>上面是一张大而全的关系图，我们试着捋一捋：首先，f1和f2是通过new Foo()的方式创建的，他们的<code>__proto__</code>指向了构造函数Foo.prototype，这个Foo.prototype也是一个对象，它的<code>__proto__</code>指向了Object.prototype，这说明了函数本身也是一个对象，而Object.prototype的<code>__proto__</code>的值为null，感觉像是到达了一个终点。</p>
 <p>接着再捋一捋另一条路线，因为函数本身也是对象，所以函数也有自己的<code>__proto__</code>，如图，Object的<code>__proto__</code>指向了Function.prototype，说明Object是由Function创建的。而Function的<code>__proto__</code>指向了自己的prototype，这说明Function也是由Function创建的。</p>
 <p>至此，大致理清了Object与Function的奇妙关系，所有对象都是由函数创建的，而函数本身，也是一种对象。</p>
@@ -402,7 +402,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://blog.rossroma.com/2018/03/24/javascript-object/">
+    <link itemprop="mainEntityOfPage" href="https://blog.rossroma.com/2018/03/24/javascript-object/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/6183683?v=3&s=400">
@@ -519,7 +519,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://blog.rossroma.com/2018/02/04/how-to-location-bug/">
+    <link itemprop="mainEntityOfPage" href="https://blog.rossroma.com/2018/02/04/how-to-location-bug/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/6183683?v=3&s=400">
@@ -555,7 +555,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2018-02-13 23:42:24" itemprop="dateModified" datetime="2018-02-13T23:42:24+08:00">2018-02-13</time>
+      <time title="修改时间：2023-07-04 09:48:26" itemprop="dateModified" datetime="2023-07-04T09:48:26+08:00">2023-07-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -637,7 +637,7 @@
 
 <h3 id="打断点"><a href="#打断点" class="headerlink" title="打断点"></a>打断点</h3><p>Chrome的开发者工具有一个很好用的代码调试工具，就是Breakpoints（断点），与console不同的是，它会在断点处终止程序的执行，可以方便的看到代码在哪一步产生了问题。</p>
 <p>相比在代码里写debugger打断点的方式，Chrome的调试工具即便捷，又不产生副作用，所以不推荐在代码里写debugger的方式来调试。</p>
-<p>更多关于Chrome开发者工具的介绍与使用信息，可移步：<a target="_blank" rel="noopener" href="http://blog.csdn.net/csdnligao/article/details/53925094">chrome开发者工具的使用</a></p>
+<p>更多关于Chrome开发者工具的介绍与使用信息，可移步：<a target="_blank" rel="noopener" href="https://blog.csdn.net/csdnligao/article/details/53925094">chrome开发者工具的使用</a></p>
 <h3 id="排除法"><a href="#排除法" class="headerlink" title="排除法"></a>排除法</h3><p>这个方法之前明明是正常的，我并没有改动它，只是在其他地方加了一些代码，它就不正常了。</p>
 <p>怎么办？假使页面中一共有abcd四个方法，我们逐次注释掉a, b , c , d，每注释掉一个就运行一次代码，如果在注释掉d以后，代码运行正常了，那么问题就出在d身上。</p>
 <h3 id="剥离法"><a href="#剥离法" class="headerlink" title="剥离法"></a>剥离法</h3><p>如果页面的代码量很大，用排除法效率可能会很低，这时候我们可以试试剥离法。</p>
@@ -645,7 +645,7 @@
 <h3 id="线上故障排除"><a href="#线上故障排除" class="headerlink" title="线上故障排除"></a>线上故障排除</h3><p>有时候线上代码出了故障，而本地又无法重现，由于线上代码不能使用console，并且上线代码都经过了压缩混淆，导致很难调试。</p>
 <p>这时候可以试试sourceMap，在webpack的配置文件中开启sourceMap，在打包的时候会生成对应的.map文件。然后将打包过的文件整体上传到服务器，这样调试线上代码时，除了压缩混淆过的代码，还会有一份原始代码，方便打断点和阅读代码。</p>
 <p>不过这样做也会有一些缺点，一是打包时间会变长，二是将原生代码暴露出去。所以，平时建议关闭sourceMap功能，只有在修复无法在本地重现的线上bug时再使用。而且，在修复完毕后，重新打一个没有sourceMap的包，上传到服务器，避免本地代码泄露。</p>
-<h6 id="关于sourceMap的更多介绍可以移步以下几个链接："><a href="#关于sourceMap的更多介绍可以移步以下几个链接：" class="headerlink" title="关于sourceMap的更多介绍可以移步以下几个链接："></a>关于sourceMap的更多介绍可以移步以下几个链接：</h6><p><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2013/01/javascript_source_map.html">JavaScript Source Map 详解</a></p>
+<h6 id="关于sourceMap的更多介绍可以移步以下几个链接："><a href="#关于sourceMap的更多介绍可以移步以下几个链接：" class="headerlink" title="关于sourceMap的更多介绍可以移步以下几个链接："></a>关于sourceMap的更多介绍可以移步以下几个链接：</h6><p><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2013/01/javascript_source_map.html">JavaScript Source Map 详解</a></p>
 <p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000008315937">打破砂锅问到底：详解Webpack中的sourcemap</a></p>
 
       
@@ -673,7 +673,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://blog.rossroma.com/2017/12/20/javascript-1/">
+    <link itemprop="mainEntityOfPage" href="https://blog.rossroma.com/2017/12/20/javascript-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/6183683?v=3&s=400">
@@ -808,7 +808,7 @@
     </div>
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://blog.rossroma.com/2017/10/31/kindle/">
+    <link itemprop="mainEntityOfPage" href="https://blog.rossroma.com/2017/10/31/kindle/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/6183683?v=3&s=400">
@@ -921,7 +921,7 @@
     </div>
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://blog.rossroma.com/2017/08/17/big-white-goose/">
+    <link itemprop="mainEntityOfPage" href="https://blog.rossroma.com/2017/08/17/big-white-goose/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/6183683?v=3&s=400">
@@ -1032,7 +1032,7 @@
     </div>
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://blog.rossroma.com/2017/07/23/hello-world/">
+    <link itemprop="mainEntityOfPage" href="https://blog.rossroma.com/2017/07/23/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/6183683?v=3&s=400">
